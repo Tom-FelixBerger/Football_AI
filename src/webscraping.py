@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 
+# function to request user input of the league and season to be scraped
 def get_inputs_from_user():
     
     # league input
@@ -35,7 +36,7 @@ def get_inputs_from_user():
     while True:
         season = input("Please enter the season of the matches you want to scrape in the following format: YYYY/YY, \nfor example: \"2024/25\".\n")
         if re.match(r"^\d{4}/\d{2}$", season):
-            start_year, end_year = map(int, season.split('/'))
+            start_year, end_year = map(int, season.split("/"))
             current_year = datetime.now().year
             if start_year <= current_year and end_year == (start_year % 100) + 1:
                 break
@@ -44,43 +45,43 @@ def get_inputs_from_user():
         else:
             print("Invalid input. Please enter the season in the format YYYY/YY.")
 
-    search_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+spiele+"+season.replace("/", "+")
+    # google search query, for example "1. Bundesliga Spiele 2024/25"
+    search_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+Spiele+"+season.replace("/", "+")
     
     return league, season, search_url
 
 
-def read_or_create_match_data_csv(file_path):
-    try:
-        match_data = pd.read_csv(file_path, index_col=0)
-    except FileNotFoundError:
-        stats = ["Team", "Tore", "Schüsse", "Torschüsse", "Ballbesitz", "Pässe", "Passgenauigkeit", "Fouls", "Gelbe", "Rote", "Abseits", "Ecken"]
-        match_data = pd.DataFrame(columns=(["Spieltag", "Datum", "Sieger"] + [stat+"_"+team for stat in stats for team in ["A", "B"]]))
-        match_data.to_csv(file_path)
-    return match_data
 
 def init_driver_and_df(league, season, search_url):
 
-    # get URL
     driver = webdriver.Chrome()
     driver.get(search_url)
 
     # Accept Cookies
-    cookies_button = driver.find_element(By.CLASS_NAME, "sy4vM")
-    cookies_button.click()
+    try:
+        cookies_button = WebDriverWait(driver, 3.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "sy4vM")))
+        cookies_button.click()
+    except TimeoutException as e:
+        print(str(e)+"\nNo cookies button found. Continuing without accepting cookies.")
 
     # Check if URL contains "Weitere Begegnungen" button
     try:
-        element = WebDriverWait(driver, 3.5).until(
-            EC.presence_of_element_located((By.CLASS_NAME, 'Z4Cazf'))
-        )
-        print("Page is ready to be scraped!")
-
-        # if successful read or create the dataframe and exit while loop
-        file_path = "../data/"+league.replace(" ", "_")+"_"+season.replace("/", "_")+".csv"
-        df = read_or_create_match_data_csv(file_path)
+        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "Z4Cazf")))
     except TimeoutException as e:
         driver.quit()
-        raise RuntimeError(str(e)+f"\nThe search query \"{league} {season} spiele\" did not return the expected results. Please try again.")
+        raise RuntimeError(str(e)+f"\nThe search query \"{league} {season} spiele\" did not return the expected results.")
+
+    # if successful read or create the dataframe
+    file_path = "../data/"+league.replace(" ", "_")+"_"+season.replace("/", "_")+".csv"
+    try:
+        match_data = pd.read_csv(file_path, index_col=0)
+    except FileNotFoundError:
+        print("This league and season has not been scraped yet. Creating a new dataframe.")
+        stats = ["Team", "Goals", "Attempts", "Attempts_On_Target", "Possession", "Passes",
+            "Passing_Accuracy", "Fouls", "Yellow_Cards", "Red_Cards", "Offside", "Corners"]
+        df = pd.DataFrame(columns=(["Matchday", "Date", "Winner"] + [stat+"_"+team for stat in stats
+                                                                        for team in ["Home", "Away"]]))
+        df.to_csv(file_path)
 
     return driver, df, file_path
 
@@ -94,8 +95,8 @@ def element_has_changed(prior_element, first=True):
 
 def expand_all_matchdays(driver, scroll=True):
     try:
-        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'Z4Cazf')))
-        candidate_buttons = driver.find_elements(By.CLASS_NAME, 'Z4Cazf')
+        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "Z4Cazf")))
+        candidate_buttons = driver.find_elements(By.CLASS_NAME, "Z4Cazf")
         for b in candidate_buttons:
             if b.is_displayed():
                 expand_button = b
@@ -110,9 +111,9 @@ def expand_all_matchdays(driver, scroll=True):
               "Assuming that all matchdays are already expanded.")
 
     try:
-        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'OcbAbf')))
+        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "OcbAbf")))
     except TimeoutException:
-        raise RuntimeError("The page did not load the matchdays correctly. Please try again.")
+        raise RuntimeError("The page did not load the matchdays correctly.")
     
     if scroll:
         # load all matchdays to top and bottom
@@ -120,38 +121,14 @@ def expand_all_matchdays(driver, scroll=True):
         for idx, first in [(0, True), (-1, False)]:        
             while True:
                 try:
-                    matchdays = driver.find_elements(By.CLASS_NAME, 'OcbAbf')
+                    matchdays = driver.find_elements(By.CLASS_NAME, "OcbAbf")
                     prior_match = matchdays[idx]
                     actions.move_to_element(prior_match).perform()
                     WebDriverWait(driver, 3.5).until(element_has_changed(prior_match, first=first))
                 except TimeoutException:
                     break
 
-def split_stats(statistics):
-    stat_list = []
-    for i in range(10):
-        stat_list += [w for w in statistics[i].text.split() if w.isdigit()]
-    
-    return stat_list
-
-def scrape_data_of_match(match, driver):
-    participants = match.find_elements(By.CLASS_NAME, 'L5Kkcd')
-    Team_A = participants[0].find_element(By.CLASS_NAME, 'ellipsisize').text.split('\n')[0]
-    Team_B = participants[1].find_element(By.CLASS_NAME, 'ellipsisize').text.split('\n')[0]
-
-    date_el = match.find_element(By.CLASS_NAME, 'GOsQPe')
-    Datum = date_el.find_element(By.CLASS_NAME, 'imspo_mt__cmd').text
-    Datum = Datum.replace(',', '')
-    
-    Tore_A = participants[0].find_element(By.CLASS_NAME, 'imspo_mt__tt-w').text.split('\n')[0]
-    Tore_A = int(Tore_A.split()[0])
-    Tore_B = participants[1].find_element(By.CLASS_NAME, 'imspo_mt__tt-w').text.split('\n')[0]
-    Tore_B = int(Tore_B.split()[0])
-    Ergebnis = 'U'
-    if Tore_A > Tore_B:
-        Ergebnis = 'A'
-    elif Tore_A < Tore_B:
-        Ergebnis = 'B'
+def scrape_statistics(match, driver):
     
     actions = ActionChains(driver)
     actions.move_to_element(match).perform()
@@ -160,63 +137,92 @@ def scrape_data_of_match(match, driver):
     time.sleep(1)
 
     try:
-        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'MzWkAb')))
-        statistics = driver.find_elements(By.CLASS_NAME, 'MzWkAb')
-        scraped_stats = split_stats(statistics)
+        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "MzWkAb")))
+        statistics = driver.find_elements(By.CLASS_NAME, "MzWkAb")
+        scraped_stats = []
+        for i in range(10):
+            scraped_stats += [w for w in statistics[i].text.split() if w.isdigit()]
+    
     except TimeoutException:
         scraped_stats = [np.nan]*20
     
     back_button = driver.find_element(By.CLASS_NAME, "vtLYrb")
     back_button.click()
     
-    return [Datum, Ergebnis, Team_A, Team_B, Tore_A, Tore_B] + scraped_stats
+    return scraped_stats
 
+def extract_date_from_text(text):
+    if "Heute" in text:
+        return datetime.now().date()
+    elif "Gestern" in text:
+        return datetime.now().date() - pd.Timedelta(days=1)
+    elif d := re.search(r"\d{1,2}\.\d{1,2}\.\d{2,4}", text):
+        return datetime.strptime(d.group(), "%d.%m.%Y").date()
+    elif d:= re.search(r"\d{1,2}\.\d{1,2}", text):
+        return datetime.strptime(f"{d.group()}{datetime.now().year}", "%d.%m.%Y").date()
+    else:
+        raise ValueError("The date could not be extracted from the text.")
+
+
+# function to find the next match that is not in the data yet and scrape it
 def scrape_next_match(driver, df):
+
     new_match_scraped = False
-
     try:
-        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'OcbAbf')))
-        matchdays = driver.find_elements(By.CLASS_NAME, 'OcbAbf')
-        matchdays = [m for m in matchdays if m.find_elements(By.CLASS_NAME, "GVj7ae")]
 
+        # find and iterate over all matchdays on the page
+        WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "OcbAbf")))
+        matchdays = driver.find_elements(By.CLASS_NAME, "OcbAbf")
         for matchday in matchdays:
-            # determine the number of the matchday
-            matchday_text = matchday.find_elements(By.CLASS_NAME, 'GVj7ae')
-            matchday_text = re.search(r'Spieltag (\d+) von', matchday_text[0].text)
-            matchday_no = int(matchday_text.group(1)) if matchday_text else np.nan
+            
+            # some "OcbAbf" elements are empty
+            if m := matchday.find_element(By.CLASS_NAME, "GVj7ae"):
+                matchday_text = m.text
+            else:
+                continue
 
-            matches = [match for match in matchday.find_elements(By.CLASS_NAME, 'KAIX8d') if match.text != '']
+            # find and iterate over all matches of the matchday (some "KAIX8d" elements are empty)
+            matches = [match for match in matchday.find_elements(By.CLASS_NAME, "KAIX8d") if match.text != ""]
             for match in matches:
-                participants = match.find_elements(By.CLASS_NAME, 'L5Kkcd')
-                Team_A = participants[0].find_element(By.CLASS_NAME, 'ellipsisize').text.split('\n')[0]
-                Team_B = participants[1].find_element(By.CLASS_NAME, 'ellipsisize').text.split('\n')[0]
-                        
-                # is the match already in the dataframe?                
-                if df[(df['Spieltag']==matchday_no)&(df['Team_A']==Team_A)&(df['Team_B']==Team_B)].empty:
-                    new_row = [matchday_no] + scrape_data_of_match(match, driver)
-                    df.loc[len(df.index)] = new_row
+
+                # scrape identifiers of the match and check if it's in the past and not already in the dataframe
+                team_home, team_away = [t.text.split("\n")[2] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
+                date = extract_date_from_text(match.find_element(By.CLASS_NAME, "GOsQPe").text)                   
+                if (date <= datetime.now().date
+                    and df[(df["Date"]==date)&(df["Team_Home"]==team_home)&(df["Team_Away"]==team_away)].empty):
+                    
+                    goals_home, goals_away = [t.text.split("\n")[1] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
+                    winner = "Draw"
+                    if goals_home > goals_away:
+                        winner = "Home"
+                    elif goals_home < goals_away:
+                        winner = "Away"
+
+                    df.loc[len(df.index)] = [matchday_text, date, winner] + scrape_statistics(match, driver)
                     new_match_scraped = True
                     break
             else:
                 continue
             break
+
     except TimeoutException as e:
-        raise RuntimeError(str(e)+"\nThe page did not load the matchdays correctly. Please try again.")
+        raise RuntimeError(str(e)+"\nThe page did not load the matchdays correctly.")
 
     return new_match_scraped
                 
 def main():
     
-    league, season, search_url = get_inputs_from_user()
+    # get user input and initialize the driver and dataframe
     while True:
         try:
+            league, season, search_url = get_inputs_from_user()
             driver, df, file_path = init_driver_and_df(league, season, search_url)
             expand_all_matchdays(driver)
             break
         except RuntimeError as e:
-            print(str(e) + "\n Trying again...")
+            print(str(e) + "\n Please try again.")
     
-
+    # scrape all matches of the league and season
     continue_scraping = True
     while continue_scraping:
         try:
