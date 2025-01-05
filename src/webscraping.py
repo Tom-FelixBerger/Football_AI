@@ -1,7 +1,11 @@
+'''
+This script can be used to webscrape the google statistics of any football league and the corresponding betting odds from oddsportal.com.
+Sometimes manual user inputs will be required (to select a league to be scraped, or to solve a Captcha while scraping.)
+'''
+
 import pandas as pd
 import numpy as np
 import re
-import time
 import traceback
 from datetime import datetime
 from selenium import webdriver
@@ -17,7 +21,7 @@ def get_inputs_from_user():
     # league input
     scrapable_leagues = {1: "1. Bundesliga", 2: "2. Bundesliga", 3: "Premier League", 4: "EFL Championship", 5: "La Liga",
                          6: "Segunda División", 7: "Serie A", 8: "Serie B", 9: "Ligue 1", 10: "Ligue 2",
-                         11: "Champions League", 12: "Europa League", 13: "Conference League", 14: "Other (Enter league name manually)"}
+                         11: "Champions League", 12: "Europa League", 13: "Conference League"}
     while True:
         league_input = input("Please enter the league of the matches you want to scrape by providing the respective number:\n" +
                                      "\n".join([f"{key}: {value}" for key, value in scrapable_leagues.items()]) + "\n")
@@ -30,11 +34,8 @@ def get_inputs_from_user():
         if 1 <= league_input <= 13:
             league = scrapable_leagues[league_input]
             break
-        elif league_input == 14:
-            league = input("Please enter the name of the league you want to scrape.\n")
-            break
         else:
-            print("The input must be between 1 and 14. Please try again.")
+            print("The input must be between 1 and 13. Please try again.")
     
     # season input
     while True:
@@ -50,9 +51,25 @@ def get_inputs_from_user():
             print("Invalid input. Please enter the season in the format YYYY/YY.")
 
     # google search query, for example "1. Bundesliga Spiele 2024/25"
-    search_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+Spiele+"+season.replace("/", "+")
+    google_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+Spiele+"+season.replace("/", "+")
+
+    # oddsportal page
+    oddsportal_pages = {1: "germany/bundesliga",
+                        2: "germany/2-bundesliga",
+                        3: "england/premier-league",
+                        4: "england/championship",
+                        5: "spain/laliga",
+                        6: "spain/laliga2",
+                        7: "italy/serie-a",
+                        8: "italy/serie-b",
+                        9: "france/ligue-1",
+                        10: "france/ligue-2",
+                        11: "europe/champions-league",
+                        12: "europe/europa-league",
+                        13: "europe/conference-league"}
+    odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"-"+season.replace("/", "-20")+"/results/"
     
-    return league, season, search_url
+    return league, season, google_url, odds_url
 
 # clicks the expand button and scroll up and down to expand all matchdays
 def expand_all_matchdays(driver):
@@ -80,7 +97,7 @@ def expand_all_matchdays(driver):
                 break
 
 # returns the date in pandas datetime format from the google date text of football matches
-def extract_date_from_text(text):
+def extract_date_from_google_text(text):
     if "Heute" in text:
         return datetime.now().date()
     if "Gestern" in text:
@@ -131,7 +148,7 @@ def find_all_scrapable_matches(driver, stats_df):
                 except NoSuchElementException:
                     continue
 
-                date = extract_date_from_text(match.find_element(By.CLASS_NAME, "GOsQPe").text)  
+                date = extract_date_from_google_text(match.find_element(By.CLASS_NAME, "GOsQPe").text)  
                 team_home, team_away = [t.text.split("\n")[1] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
                 goals_home, goals_away = [t.text.split("\n")[0] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
 
@@ -162,7 +179,7 @@ def let_user_fix_page_state_manually(problem_message):
         if choice == 3:
             raise KeyboardInterrupt("Aborting the webscraping due to user choice.")
 
-def init_driver_and_df(league, season, search_url):
+def init_google_stats_scraping(league, season, search_url):
 
     # Read existing or create csv file for the match statistics to be scraped
     file_path = "../data/"+league.replace(" ", "_")+"_"+season.replace("/", "_")+".csv"
@@ -255,25 +272,48 @@ def scrape_all_matches(driver, matches_df, stats_df, league):
 def main():
     
     # get user input
-    league, season, search_url = get_inputs_from_user()
+    league, season, google_url, odds_url = get_inputs_from_user()
 
-    #  initialize the driver and dataframe and scrape all matches from matches df that are not in stats_df, then export to csv
+    #  initialize the driver and dataframes for the google match statistics and scrape all match statistics that weren't previously scraped.
     try:
-        driver, stats_df, matches_df, file_path = init_driver_and_df(league, season, search_url)
+        driver, stats_df, matches_df, file_path = init_google_stats_scraping(league, season, google_url)
     except KeyboardInterrupt:
         pass
-    else:                 
+    else:           
         try:
             scrape_all_matches(driver, matches_df, stats_df, league)
+            driver.quit()
         except KeyboardInterrupt:
             driver.quit()
         while True:
             try:
-                print("Exporting scraped data to csv.")
+                print("Exporting scraped google statistics to csv.")
                 stats_df.to_csv(file_path)
                 break
             except PermissionError:
                 input("Permission to export csv denied. Please hit Enter when you closed the file.")
+    
+    # #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
+    # try:
+    #     driver, stats_df, matches_df, file_path = init_google_stats_scraping(league, season, search_url)
+    # except KeyboardInterrupt:
+    #     pass
+    # else:           
+    #     try:
+    #         scrape_all_matches(driver, matches_df, stats_df, league)
+    #         driver.quit()
+    #     except KeyboardInterrupt:
+    #         driver.quit()
+    #     while True:
+    #         try:
+    #             print("Exporting scraped data to csv.")
+    #             stats_df.to_csv(file_path)
+    #             break
+    #         except PermissionError:
+    #             input("Permission to export csv denied. Please hit Enter when you closed the file.")
+
+    # match scraped odds with scraped matches.
+
 
 if __name__ == "__main__":
     main()
