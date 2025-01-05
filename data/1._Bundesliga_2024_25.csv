@@ -1,1 +1,136 @@
-,Matchday,Date,Winner,Team_Home,Team_Away,Goals_Home,Goals_Away,Attempts_Home,Attempts_Away,Attempts_On_Target_Home,Attempts_On_Target_Away,Possession_Home,Possession_Away,Passes_Home,Passes_Away,Passing_Accuracy_Home,Passing_Accuracy_Away,Fouls_Home,Fouls_Away,Yellow_Cards_Home,Yellow_Cards_Away,Red_Cards_Home,Red_Cards_Away,Offside_Home,Offside_Away,Corners_Home,Corners_Away
+,Date,Matchday,Team_Home,Team_Away,Goals_Home,Goals_Away,Attempts_Home,Attempts_Away,Attempts_On_Target_Home,Attempts_On_Target_Away,Possession_Home,Possession_Away,Passes_Home,Passes_Away,Passing_Accuracy_Home,Passing_Accuracy_Away,Fouls_Home,Fouls_Away,Yellow_Cards_Home,Yellow_Cards_Away,Red_Cards_Home,Red_Cards_Away,Offside_Home,Offside_Away,Corners_Home,Corners_Away
+0,23.8.2024,Spieltag 1 von 34,Mönchengladbach,Leverkusen,2,3,14,25,7,10,42,58,444,612,82,86,11,7,1,0,0,0,2,0,2,4
+1,24.8.2024,Spieltag 1 von 34,RB Leipzig,Bochum,1,0,13,10,3,4,63,37,505,301,81,70,9,16,1,3,1,0,3,2,9,3
+2,24.8.2024,Spieltag 1 von 34,Hoffenheim,Holstein,3,2,21,17,8,6,55,45,460,383,83,79,8,14,2,1,0,1,2,1,8,6
+3,24.8.2024,Spieltag 1 von 34,Mainz,Union Berlin,1,1,14,15,3,5,54,46,379,323,77,71,10,15,1,3,0,0,1,1,8,9
+4,24.8.2024,Spieltag 1 von 34,Freiburg,VfB Stuttgart,3,1,16,9,6,2,32,68,309,646,76,88,7,10,2,1,0,0,3,0,6,3
+5,24.8.2024,Spieltag 1 von 34,Augsburg,Werder Bremen,2,2,11,11,3,5,45,55,381,462,81,83,11,10,3,1,0,0,1,2,4,2
+6,24.8.2024,Spieltag 1 von 34,Dortmund,Eintracht Frankfurt,2,0,20,7,5,2,71,29,709,295,91,82,6,3,0,1,0,0,0,1,7,7
+7,25.8.2024,Spieltag 1 von 34,Wolfsburg,Bayern,2,3,10,15,2,8,29,71,248,609,68,85,12,11,2,3,0,0,3,1,1,7
+8,25.8.2024,Spieltag 1 von 34,St. Pauli,Heidenheim,0,2,11,5,3,3,62,38,544,351,80,70,10,15,2,3,0,0,1,0,4,2
+9,30.8.2024,Spieltag 2 von 34,Union Berlin,St. Pauli,1,0,11,8,5,1,39,61,370,589,74,78,10,11,3,1,0,0,2,3,5,4
+10,31.8.2024,Spieltag 2 von 34,Werder Bremen,Dortmund,0,0,5,9,1,4,46,54,443,524,82,87,11,16,2,5,0,1,8,3,5,6
+11,31.8.2024,Spieltag 2 von 34,Holstein,Wolfsburg,0,2,13,13,5,5,55,45,412,332,82,74,17,14,4,7,0,0,2,1,1,7
+12,31.8.2024,Spieltag 2 von 34,VfB Stuttgart,Mainz,3,3,28,11,12,7,64,36,500,288,86,77,6,12,4,2,0,0,2,2,11,2
+13,31.8.2024,Spieltag 2 von 34,Eintracht Frankfurt,Hoffenheim,3,1,18,11,7,3,51,49,465,444,85,84,10,10,0,3,0,0,1,1,1,4
+14,31.8.2024,Spieltag 2 von 34,Bochum,Mönchengladbach,0,2,15,15,4,6,38,62,355,577,75,84,9,10,1,0,0,0,1,2,3,4
+15,31.8.2024,Spieltag 2 von 34,Leverkusen,RB Leipzig,2,3,26,8,10,4,63,37,577,352,86,82,7,8,3,1,0,0,0,5,18,2
+16,1.9.2024,Spieltag 2 von 34,Heidenheim,Augsburg,4,0,15,15,8,1,36,64,299,523,74,84,15,10,1,4,0,0,2,2,5,6
+17,1.9.2024,Spieltag 2 von 34,Bayern,Freiburg,2,0,12,9,3,3,67,33,704,351,89,74,13,12,1,0,0,0,1,0,2,4
+18,13.9.2024,Spieltag 3 von 34,Dortmund,Heidenheim,4,2,13,11,6,4,62,38,561,342,85,78,12,18,2,2,0,0,0,1,8,1
+19,14.9.2024,Spieltag 3 von 34,Hoffenheim,Leverkusen,1,4,15,20,5,8,39,61,410,631,84,91,9,10,2,2,0,0,2,1,4,12
+20,14.9.2024,Spieltag 3 von 34,Freiburg,Bochum,2,1,26,13,9,3,55,45,438,375,78,73,5,16,0,3,0,0,7,2,5,6
+21,14.9.2024,Spieltag 3 von 34,Wolfsburg,Eintracht Frankfurt,1,2,18,14,4,6,60,40,501,344,81,78,7,18,1,2,0,0,0,3,5,4
+22,14.9.2024,Spieltag 3 von 34,Mönchengladbach,VfB Stuttgart,1,3,15,12,7,7,43,57,419,548,77,82,14,12,2,2,0,0,8,2,6,2
+23,14.9.2024,Spieltag 3 von 34,RB Leipzig,Union Berlin,0,0,15,10,3,3,68,32,745,350,88,74,8,19,2,3,0,0,1,1,6,5
+24,14.9.2024,Spieltag 3 von 34,Holstein,Bayern,1,6,5,23,1,12,29,71,319,798,76,92,12,11,0,1,0,0,0,0,2,10
+25,15.9.2024,Spieltag 3 von 34,Augsburg,St. Pauli,3,1,18,11,9,3,43,57,317,434,74,79,12,10,4,3,0,0,1,2,7,7
+26,15.9.2024,Spieltag 3 von 34,Mainz,Werder Bremen,1,2,16,14,5,5,58,42,477,357,81,75,12,7,3,1,0,1,4,1,10,4
+27,20.9.2024,Spieltag 4 von 34,Augsburg,Mainz,2,3,29,5,8,3,74,26,541,202,84,57,7,12,3,3,1,1,1,2,14,1
+28,21.9.2024,Spieltag 4 von 34,Bochum,Holstein,2,2,14,14,3,4,44,56,345,428,73,78,19,9,4,1,0,0,0,4,2,5
+29,21.9.2024,Spieltag 4 von 34,Heidenheim,Freiburg,0,3,7,15,1,5,42,58,374,514,75,79,6,7,1,1,0,0,2,1,3,9
+30,21.9.2024,Spieltag 4 von 34,Union Berlin,Hoffenheim,2,1,12,7,2,3,52,48,456,425,82,76,17,18,3,3,0,0,1,0,5,5
+31,21.9.2024,Spieltag 4 von 34,Werder Bremen,Bayern,0,5,0,25,0,7,30,70,358,844,79,92,4,13,0,3,0,0,0,1,1,4
+32,21.9.2024,Spieltag 4 von 34,Eintracht Frankfurt,Mönchengladbach,2,0,18,25,4,7,36,64,367,642,84,89,10,12,1,1,0,0,0,2,8,5
+33,22.9.2024,Spieltag 4 von 34,Leverkusen,Wolfsburg,4,3,20,9,7,4,80,20,773,202,91,68,6,14,4,5,0,1,4,1,6,2
+34,22.9.2024,Spieltag 4 von 34,VfB Stuttgart,Dortmund,5,1,17,7,9,3,52,48,480,457,87,85,10,6,1,3,0,0,3,2,6,4
+35,22.9.2024,Spieltag 4 von 34,St. Pauli,RB Leipzig,0,0,17,10,4,5,30,70,325,757,71,86,6,8,2,1,0,0,2,1,3,1
+36,27.9.2024,Spieltag 5 von 34,Dortmund,Bochum,4,2,23,10,8,5,67,33,556,285,88,72,12,9,2,0,0,0,2,3,11,0
+37,28.9.2024,Spieltag 5 von 34,Mainz,Heidenheim,0,2,7,14,2,6,51,49,390,389,75,74,10,10,2,4,1,1,0,2,7,6
+38,28.9.2024,Spieltag 5 von 34,Wolfsburg,VfB Stuttgart,2,2,5,18,2,4,30,70,251,578,63,83,20,10,5,0,0,1,2,3,1,3
+39,28.9.2024,Spieltag 5 von 34,Freiburg,St. Pauli,0,3,9,10,2,4,74,26,632,235,86,65,7,18,3,3,0,0,7,1,4,2
+40,28.9.2024,Spieltag 5 von 34,RB Leipzig,Augsburg,4,0,17,7,7,1,60,40,560,384,85,78,9,13,1,2,0,0,1,1,8,5
+41,28.9.2024,Spieltag 5 von 34,Mönchengladbach,Union Berlin,1,0,8,9,2,2,64,36,610,341,83,68,11,12,3,1,0,0,3,1,2,4
+42,28.9.2024,Spieltag 5 von 34,Bayern,Leverkusen,1,1,18,3,3,2,70,30,714,319,90,74,11,15,1,3,0,0,0,0,6,1
+43,29.9.2024,Spieltag 5 von 34,Holstein,Eintracht Frankfurt,2,4,10,20,5,10,47,53,381,421,79,84,12,12,1,3,0,0,1,1,4,9
+44,29.9.2024,Spieltag 5 von 34,Hoffenheim,Werder Bremen,3,4,10,23,5,10,35,65,325,592,79,90,11,19,3,3,1,0,1,1,2,6
+45,4.10.2024,Spieltag 6 von 34,Augsburg,Mönchengladbach,2,1,15,11,5,4,34,66,305,603,70,82,13,15,2,4,0,0,3,2,6,5
+46,5.10.2024,Spieltag 6 von 34,Werder Bremen,Freiburg,0,1,12,15,3,3,59,41,614,441,84,80,7,9,1,1,0,0,0,0,7,5
+47,5.10.2024,Spieltag 6 von 34,Union Berlin,Dortmund,2,1,14,8,5,4,32,68,278,593,66,83,15,17,4,4,0,0,4,0,3,3
+48,5.10.2024,Spieltag 6 von 34,Bochum,Wolfsburg,1,3,18,17,5,5,58,42,406,307,76,66,11,12,1,2,0,0,5,1,7,6
+49,5.10.2024,Spieltag 6 von 34,Leverkusen,Holstein,2,2,23,8,7,4,75,25,796,283,91,73,5,9,2,2,0,0,3,1,12,3
+50,5.10.2024,Spieltag 6 von 34,St. Pauli,Mainz,0,3,19,8,4,4,56,44,504,420,79,76,12,16,0,3,0,0,1,1,2,2
+51,6.10.2024,Spieltag 6 von 34,Heidenheim,RB Leipzig,0,1,14,13,4,2,45,55,397,491,72,79,12,13,2,2,0,0,1,2,3,2
+52,6.10.2024,Spieltag 6 von 34,Eintracht Frankfurt,Bayern,3,3,6,24,4,13,25,75,305,853,77,91,10,6,1,1,0,0,3,5,0,11
+53,6.10.2024,Spieltag 6 von 34,VfB Stuttgart,Hoffenheim,1,1,20,7,6,5,68,32,664,323,89,77,10,7,1,4,0,0,0,0,10,5
+54,18.10.2024,Spieltag 7 von 34,Dortmund,St. Pauli,2,1,20,10,7,3,76,24,767,250,92,75,8,7,2,1,0,0,1,1,7,1
+55,19.10.2024,Spieltag 7 von 34,Mainz,RB Leipzig,0,2,17,11,2,5,54,46,509,459,78,75,12,15,1,3,0,0,2,0,5,3
+56,19.10.2024,Spieltag 7 von 34,Hoffenheim,Bochum,3,1,12,13,7,4,50,50,415,419,77,78,10,12,1,1,0,0,3,0,4,2
+57,19.10.2024,Spieltag 7 von 34,Freiburg,Augsburg,3,1,15,9,6,3,57,43,575,429,82,81,11,7,1,1,0,0,0,2,5,4
+58,19.10.2024,Spieltag 7 von 34,Leverkusen,Eintracht Frankfurt,2,1,27,9,9,2,54,46,545,470,91,87,9,5,2,1,0,0,2,2,8,3
+59,19.10.2024,Spieltag 7 von 34,Mönchengladbach,Heidenheim,3,2,20,19,10,6,67,33,523,257,81,68,15,9,3,3,0,0,0,2,6,3
+60,19.10.2024,Spieltag 7 von 34,Bayern,VfB Stuttgart,4,0,22,4,10,1,66,34,699,360,89,78,6,10,0,2,0,0,2,2,7,3
+61,20.10.2024,Spieltag 7 von 34,Holstein,Union Berlin,0,2,12,14,5,4,47,53,433,480,79,82,8,11,2,1,0,0,1,4,7,3
+62,20.10.2024,Spieltag 7 von 34,Wolfsburg,Werder Bremen,2,4,14,15,6,7,42,58,390,533,78,82,15,9,1,1,1,0,4,0,4,4
+63,25.10.2024,Spieltag 8 von 34,Mainz,Mönchengladbach,1,1,23,9,6,5,52,48,473,441,80,77,16,16,3,2,0,0,2,0,2,4
+64,26.10.2024,Spieltag 8 von 34,RB Leipzig,Freiburg,3,1,12,15,9,5,42,58,413,559,80,84,9,7,3,2,0,0,1,1,3,3
+65,26.10.2024,Spieltag 8 von 34,Augsburg,Dortmund,2,1,12,11,4,4,23,77,224,722,68,88,13,10,3,1,0,1,1,1,3,5
+66,26.10.2024,Spieltag 8 von 34,St. Pauli,Wolfsburg,0,0,14,9,5,4,54,46,499,433,80,79,9,12,0,3,0,0,2,3,7,6
+67,26.10.2024,Spieltag 8 von 34,VfB Stuttgart,Holstein,2,1,16,9,6,3,59,41,528,368,88,80,6,17,1,4,1,1,2,3,9,5
+68,26.10.2024,Spieltag 8 von 34,Werder Bremen,Leverkusen,2,2,13,14,8,5,43,57,468,613,80,84,9,11,1,1,0,0,3,1,3,5
+69,27.10.2024,Spieltag 8 von 34,Bochum,Bayern,0,5,6,19,2,10,27,73,274,742,68,90,15,6,1,1,0,0,3,3,2,6
+70,27.10.2024,Spieltag 8 von 34,Union Berlin,Eintracht Frankfurt,1,1,13,17,4,5,48,52,448,491,74,77,13,7,5,1,0,1,4,1,4,5
+71,27.10.2024,Spieltag 8 von 34,Heidenheim,Hoffenheim,0,0,17,12,3,4,46,54,380,444,76,79,12,16,1,2,0,0,0,0,7,3
+72,1.11.2024,Spieltag 9 von 34,Leverkusen,VfB Stuttgart,0,0,19,4,5,1,52,48,447,433,83,80,13,14,3,4,0,0,9,0,10,2
+73,2.11.2024,Spieltag 9 von 34,Eintracht Frankfurt,Bochum,7,2,18,11,9,8,65,35,588,310,85,71,6,15,1,2,0,0,0,1,5,2
+74,2.11.2024,Spieltag 9 von 34,Holstein,Heidenheim,1,0,11,17,6,5,45,55,329,389,73,78,16,14,4,5,0,0,1,0,5,6
+75,2.11.2024,Spieltag 9 von 34,Wolfsburg,Augsburg,1,1,18,3,6,1,70,30,624,269,85,67,7,14,1,3,0,0,0,1,8,1
+76,2.11.2024,Spieltag 9 von 34,Bayern,Union Berlin,3,0,16,8,7,1,78,22,865,247,92,68,2,9,0,2,0,0,1,3,7,4
+77,2.11.2024,Spieltag 9 von 34,Hoffenheim,St. Pauli,0,2,12,7,6,3,68,32,620,306,84,71,10,10,0,1,0,0,2,0,7,2
+78,2.11.2024,Spieltag 9 von 34,Dortmund,RB Leipzig,2,1,20,7,7,3,56,44,517,406,82,79,11,12,3,4,0,0,2,2,4,0
+79,3.11.2024,Spieltag 9 von 34,Freiburg,Mainz,0,0,10,9,2,2,51,49,482,459,78,78,9,12,1,2,0,0,2,2,8,4
+80,3.11.2024,Spieltag 9 von 34,Mönchengladbach,Werder Bremen,4,1,16,15,8,5,47,53,487,531,81,85,12,10,1,2,0,1,2,1,7,7
+81,8.11.2024,Spieltag 10 von 34,Union Berlin,Freiburg,0,0,12,14,6,4,40,60,373,574,76,83,11,8,2,0,0,0,4,1,4,1
+82,9.11.2024,Spieltag 10 von 34,Werder Bremen,Holstein,2,1,16,12,5,5,61,39,534,359,83,71,10,19,3,2,0,0,0,2,6,3
+83,9.11.2024,Spieltag 10 von 34,Bochum,Leverkusen,1,1,15,11,3,3,29,71,281,719,76,89,10,9,0,1,0,0,1,3,6,4
+84,9.11.2024,Spieltag 10 von 34,Mainz,Dortmund,3,1,13,2,9,1,53,47,478,442,84,81,17,5,3,1,0,1,3,0,8,0
+85,9.11.2024,Spieltag 10 von 34,St. Pauli,Bayern,0,1,3,13,0,6,25,75,268,826,73,89,10,7,2,2,0,0,0,2,5,10
+86,9.11.2024,Spieltag 10 von 34,RB Leipzig,Mönchengladbach,0,0,12,14,5,4,62,38,616,379,86,80,14,7,2,2,0,0,2,4,8,4
+87,10.11.2024,Spieltag 10 von 34,Augsburg,Hoffenheim,0,0,16,11,4,2,44,56,442,561,81,83,16,7,2,3,0,0,2,3,10,6
+88,10.11.2024,Spieltag 10 von 34,VfB Stuttgart,Eintracht Frankfurt,2,3,22,8,11,5,61,39,561,373,85,77,10,15,2,2,0,0,5,4,8,3
+89,10.11.2024,Spieltag 10 von 34,Heidenheim,Wolfsburg,1,3,19,13,4,6,66,34,507,272,83,69,9,23,1,6,0,0,4,0,5,5
+90,22.11.2024,Spieltag 11 von 34,Bayern,Augsburg,3,0,33,2,14,1,80,20,881,218,92,70,9,9,0,0,0,1,1,0,8,0
+91,23.11.2024,Spieltag 11 von 34,Hoffenheim,RB Leipzig,4,3,20,14,7,6,60,40,508,339,83,76,14,12,2,1,0,0,1,4,4,3
+92,23.11.2024,Spieltag 11 von 34,Dortmund,Freiburg,4,0,19,7,7,3,60,40,633,439,90,82,11,4,1,0,0,2,0,0,7,0
+93,23.11.2024,Spieltag 11 von 34,Wolfsburg,Union Berlin,1,0,10,11,5,4,56,44,510,410,82,81,7,15,1,2,0,0,1,2,8,5
+94,23.11.2024,Spieltag 11 von 34,Leverkusen,Heidenheim,5,2,20,6,10,3,79,21,948,252,91,71,8,11,0,0,0,0,0,1,6,0
+95,23.11.2024,Spieltag 11 von 34,VfB Stuttgart,Bochum,2,0,15,9,5,2,58,42,591,420,86,82,7,16,2,3,0,0,2,1,7,4
+96,23.11.2024,Spieltag 11 von 34,Eintracht Frankfurt,Werder Bremen,1,0,15,8,5,1,50,50,475,467,82,79,15,9,2,2,0,0,1,4,5,6
+97,24.11.2024,Spieltag 11 von 34,Holstein,Mainz,0,3,7,18,2,7,38,62,350,556,75,84,11,7,1,0,0,0,1,2,2,6
+98,24.11.2024,Spieltag 11 von 34,Mönchengladbach,St. Pauli,2,0,15,15,4,3,49,51,546,550,88,87,7,8,1,0,0,0,1,3,5,4
+99,29.11.2024,Spieltag 12 von 34,St. Pauli,Holstein,3,1,11,10,4,3,48,52,410,454,77,78,10,11,2,5,0,0,3,0,4,4
+100,30.11.2024,Spieltag 12 von 34,Union Berlin,Leverkusen,1,2,8,8,2,3,37,63,343,568,72,85,18,11,4,2,0,0,1,0,1,3
+101,30.11.2024,Spieltag 12 von 34,Augsburg,Bochum,1,0,16,7,4,1,54,46,454,399,77,71,8,22,3,3,0,0,3,0,6,1
+102,30.11.2024,Spieltag 12 von 34,Werder Bremen,VfB Stuttgart,2,2,20,10,6,4,42,58,396,557,80,85,8,13,1,1,0,0,0,1,11,2
+103,30.11.2024,Spieltag 12 von 34,RB Leipzig,Wolfsburg,1,5,9,13,4,8,63,37,637,386,88,79,11,6,2,1,0,0,4,0,7,3
+104,30.11.2024,Spieltag 12 von 34,Freiburg,Mönchengladbach,3,1,17,15,7,4,48,52,445,474,82,84,5,14,1,1,0,0,1,0,4,6
+105,30.11.2024,Spieltag 12 von 34,Dortmund,Bayern,1,1,7,14,2,5,32,68,304,615,72,87,11,7,2,2,0,0,1,4,2,3
+106,1.12.2024,Spieltag 12 von 34,Mainz,Hoffenheim,2,0,18,10,8,2,53,47,438,406,73,75,13,12,1,3,0,0,0,2,8,3
+107,1.12.2024,Spieltag 12 von 34,Heidenheim,Eintracht Frankfurt,0,4,8,14,1,8,46,54,427,508,76,84,7,9,0,2,0,0,2,3,6,5
+108,6.12.2024,Spieltag 13 von 34,VfB Stuttgart,Union Berlin,3,2,7,14,5,3,65,35,608,326,84,70,14,19,1,6,0,0,2,0,1,6
+109,7.12.2024,Spieltag 13 von 34,Leverkusen,St. Pauli,2,1,6,12,2,4,63,37,663,385,88,80,8,10,1,3,0,0,3,2,7,4
+110,7.12.2024,Spieltag 13 von 34,Bayern,Heidenheim,4,2,21,2,10,2,83,17,991,206,93,66,4,5,1,0,0,0,1,0,8,0
+111,7.12.2024,Spieltag 13 von 34,Holstein,RB Leipzig,0,2,17,9,5,5,56,44,484,393,79,78,11,13,4,3,0,0,2,2,6,1
+112,7.12.2024,Spieltag 13 von 34,Eintracht Frankfurt,Augsburg,2,2,16,8,4,3,68,32,571,276,84,71,17,9,2,2,0,0,1,4,4,0
+113,7.12.2024,Spieltag 13 von 34,Bochum,Werder Bremen,0,1,12,9,2,1,52,48,446,439,77,76,12,10,1,1,0,0,1,0,9,5
+114,7.12.2024,Spieltag 13 von 34,Mönchengladbach,Dortmund,1,1,9,16,3,3,39,61,344,529,79,87,16,11,1,2,1,0,3,1,7,4
+115,8.12.2024,Spieltag 13 von 34,Wolfsburg,Mainz,4,3,10,12,5,5,43,57,395,507,78,80,10,15,3,4,0,0,0,1,3,5
+116,8.12.2024,Spieltag 13 von 34,Hoffenheim,Freiburg,1,1,15,11,5,4,49,51,517,527,81,80,10,5,1,1,0,0,1,2,6,1
+117,13.12.2024,Spieltag 14 von 34,Freiburg,Wolfsburg,3,2,18,20,9,5,53,47,479,420,79,78,11,3,4,1,0,0,2,2,5,6
+118,14.12.2024,Spieltag 14 von 34,Mönchengladbach,Holstein,4,1,17,12,6,3,57,43,526,414,85,78,10,14,1,1,0,0,4,3,5,2
+119,14.12.2024,Spieltag 14 von 34,Augsburg,Leverkusen,0,2,8,14,4,3,34,66,367,708,79,89,12,5,3,0,0,0,5,2,4,9
+120,14.12.2024,Spieltag 14 von 34,Union Berlin,Bochum,1,1,22,13,4,3,70,30,540,234,83,61,11,9,2,2,0,1,1,0,7,6
+121,14.12.2024,Spieltag 14 von 34,Mainz,Bayern,2,1,8,13,4,1,31,69,292,647,69,84,21,12,3,2,0,0,3,0,3,2
+122,14.12.2024,Spieltag 14 von 34,St. Pauli,Werder Bremen,0,2,15,8,4,4,57,43,586,453,83,82,10,9,2,3,0,0,2,4,4,5
+123,15.12.2024,Spieltag 14 von 34,Heidenheim,VfB Stuttgart,1,3,9,18,2,7,33,67,280,578,68,85,25,13,4,3,0,0,2,0,9,6
+124,15.12.2024,Spieltag 14 von 34,Dortmund,Hoffenheim,1,1,6,12,2,1,54,46,445,368,84,78,9,10,5,2,0,0,1,4,3,9
+125,15.12.2024,Spieltag 14 von 34,RB Leipzig,Eintracht Frankfurt,2,1,19,16,9,3,43,57,407,523,85,86,15,10,1,3,0,0,5,3,6,7
+126,20.12.2024,Spieltag 15 von 34,Bayern,RB Leipzig,5,1,22,4,9,1,71,29,712,295,90,78,9,10,5,2,0,0,2,1,8,1
+127,21.12.2024,Spieltag 15 von 34,Eintracht Frankfurt,Mainz,1,3,34,9,9,3,71,29,550,245,85,64,10,10,1,1,0,1,1,5,17,2
+128,21.12.2024,Spieltag 15 von 34,Holstein,Augsburg,5,1,8,17,6,4,37,63,295,476,72,84,11,13,0,4,0,0,2,1,3,8
+129,21.12.2024,Spieltag 15 von 34,Werder Bremen,Union Berlin,4,1,10,16,5,4,54,46,530,449,83,78,9,12,2,2,0,0,1,2,4,9
+130,21.12.2024,Spieltag 15 von 34,Hoffenheim,Mönchengladbach,1,2,18,5,8,3,65,35,651,373,88,79,14,6,0,0,0,0,1,2,8,4
+131,21.12.2024,Spieltag 15 von 34,VfB Stuttgart,St. Pauli,0,1,25,11,5,5,73,27,678,261,88,71,10,11,2,2,0,0,1,5,9,1
+132,21.12.2024,Spieltag 15 von 34,Leverkusen,Freiburg,5,1,20,8,12,2,67,33,680,335,88,74,8,9,1,2,0,0,0,1,4,2
+133,22.12.2024,Spieltag 15 von 34,Bochum,Heidenheim,2,0,14,10,4,2,52,48,412,399,73,71,18,15,2,7,0,0,2,0,5,2
+134,22.12.2024,Spieltag 15 von 34,Wolfsburg,Dortmund,1,3,14,12,5,4,49,51,449,471,80,86,8,8,3,2,0,1,0,1,10,4
