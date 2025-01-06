@@ -50,10 +50,11 @@ def get_inputs_from_user():
         else:
             print("Invalid input. Please enter the season in the format YYYY/YY.")
 
-    # google search query, for example "1. Bundesliga Spiele 2024/25"
+    # google search query and file path
     google_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+Spiele+"+season.replace("/", "+")
+    google_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_google_statistics.csv"
 
-    # oddsportal page
+    # oddsportal page and file path
     oddsportal_pages = {1: "germany/bundesliga",
                         2: "germany/2-bundesliga",
                         3: "england/premier-league",
@@ -68,8 +69,12 @@ def get_inputs_from_user():
                         12: "europe/europa-league",
                         13: "europe/conference-league"}
     odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"-"+season.replace("/", "-20")+"/results/"
+    odds_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_oddsportal_odds.csv"
+
+    # file path for all matches
+    matches_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_matches.csv"
     
-    return league, season, google_url, odds_url
+    return league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path
 
 # clicks the expand button and scroll up and down to expand all matchdays
 def expand_all_matchdays(driver):
@@ -121,11 +126,7 @@ def extract_date_from_google_text(text):
     return f"{day}.{month}.{year}"
 
 # function to find the next match that is not in the mathes_df dataframe and add it
-def find_all_scrapable_matches(driver, stats_df):
-        
-        # create a dataframe to store the scrapable matches
-        matches_df = pd.DataFrame(columns=["Date", "Matchday", "Team_Home", "Team_Away",
-                                           "Goals_Home", "Goals_Away"])
+def find_all_scrapable_matches(driver, matches_df):
 
         # find and iterate over all matchdays on the page
         WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "OcbAbf")))
@@ -151,9 +152,10 @@ def find_all_scrapable_matches(driver, stats_df):
                 date = extract_date_from_google_text(match.find_element(By.CLASS_NAME, "GOsQPe").text)  
                 team_home, team_away = [t.text.split("\n")[1] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
                 goals_home, goals_away = [t.text.split("\n")[0] for t in match.find_elements(By.CLASS_NAME, "L5Kkcd")]
+                idx = "_".join([date, team_home, team_away, goals_home, goals_away])
 
-                if stats_df[(stats_df["Date"]==date)&(stats_df["Team_Home"]==team_home)&(stats_df["Team_Away"]==team_away)].empty:
-                    matches_df.loc[len(matches_df.index)] = [date, matchday_text, team_home, team_away, goals_home, goals_away]
+                if not idx in matches_df.index:
+                    matches_df.loc[idx] = [date, matchday_text, team_home, team_away, goals_home, goals_away]
         
         return matches_df
 
@@ -179,24 +181,24 @@ def let_user_fix_page_state_manually(problem_message):
         if choice == 3:
             raise KeyboardInterrupt("Aborting the webscraping due to user choice.")
 
-def init_google_stats_scraping(league, season, search_url):
-
-    # Read existing or create csv file for the match statistics to be scraped
-    file_path = "../data/"+league.replace(" ", "_")+"_"+season.replace("/", "_")+".csv"
+def init_google_stats_scraping(google_url, google_file_path, matches_file_path):
+    
+    # Read existing or create csv files for the matches and match statistics to be scraped
     try:
-        stats_df = pd.read_csv(file_path, index_col=0)
+        google_stats_df = pd.read_csv(google_file_path, index_col=0)
+        matches_df = pd.read_csv(matches_file_path, index_col=0)
     except FileNotFoundError:
         print("This league and season has not been scraped yet. Creating a new dataframe.")
-        stats = ["Team", "Goals", "Attempts", "Attempts_On_Target", "Possession", "Passes",
+        stats = ["Attempts", "Attempts_On_Target", "Possession", "Passes",
             "Passing_Accuracy", "Fouls", "Yellow_Cards", "Red_Cards", "Offside", "Corners"]
-        stats_df = pd.DataFrame(columns=(["Date", "Matchday"] + [stat+"_"+team for stat in stats
-                                                                        for team in ["Home", "Away"]]))
-        stats_df.to_csv(file_path)
+        google_stats_df = pd.DataFrame(columns=[stat+"_"+team for stat in stats for team in ["Home", "Away"]])
+        google_stats_df.to_csv(google_file_path)
+        matches_df = pd.DataFrame(columns=["Date", "Matchday", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"])
+        matches_df.to_csv(matches_file_path)
 
-    
     # Initialize driver and accept Cookies
     driver = webdriver.Chrome()
-    driver.get(search_url)
+    driver.get(google_url)
     while True:
         try:
             cookies_button = WebDriverWait(driver, 3.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "sy4vM")))
@@ -206,7 +208,7 @@ def init_google_stats_scraping(league, season, search_url):
             print("An error occured. \nFull stack trace:")
             traceback.print_exc()
             if let_user_fix_page_state_manually("Can you fix the page state manually? I'm expecting to click Google's accept cookies button next."):
-                driver.get(search_url)
+                driver.get(google_url)
             else:
                 break
         
@@ -214,7 +216,7 @@ def init_google_stats_scraping(league, season, search_url):
     while True:
         try:
             expand_all_matchdays(driver)
-            matches_df = find_all_scrapable_matches(driver, stats_df)
+            find_all_scrapable_matches(driver, matches_df)
             break
         except TimeoutException:
             print("An error occured. \nFull stack trace:")
@@ -225,7 +227,7 @@ def init_google_stats_scraping(league, season, search_url):
                 raise KeyboardInterrupt("Cannot continue at this state. Aborting the webscraping")
 
     print(f"Driver and DataFrames are ready. {len(matches_df)} scrapable matches were found.")
-    return driver, stats_df, matches_df, file_path
+    return driver, google_stats_df, matches_df
 
 def scrape_statistics(driver):
 
@@ -243,20 +245,21 @@ def scrape_statistics(driver):
     
     return scraped_stats
 
-# function to scrape all matches from matches_df that are not in stats_df
-def scrape_all_matches(driver, matches_df, stats_df, league):
+# function to scrape all matches from matches_df that are not in google_stats_df
+def scrape_all_matches(driver, matches_df, google_stats_df, league):
     
-    # iterate over all scrapable matches and search the statistics of those that are not in the stats_df
+    # iterate over all scrapable matches and search the statistics of those that are not in the google_stats_df
+    progress_counter = 1
     for idx, row in matches_df.iterrows():
-        print(f"Attempting to scrape match {idx + 1} of {len(matches_df)}: {row['Team_Home']} vs {row['Team_Away']} on {row['Date']}.")
-        if stats_df[(stats_df["Date"]==row["Date"])&(stats_df["Team_Home"]==row["Team_Home"])&(stats_df["Team_Away"]==row["Team_Away"])].empty:
+        print(f"Attempting to scrape match {progress_counter} of {len(matches_df)}: {row['Team_Home']} vs {row['Team_Away']} on {row['Date']}.")
+        progress_counter += 1
+        if not idx in google_stats_df.index:
             match_url = ("https://www.google.com/search?q="+row["Team_Home"]+" vs. "+row["Team_Away"]+" "+row["Date"]+" "+league).replace(" ", "+")
             driver.get(match_url)
             while True:
                 try:
                     match_stats = scrape_statistics(driver)
-                    new_row = ([row["Date"], row["Matchday"], row["Team_Home"], row["Team_Away"], row["Goals_Home"], row["Goals_Away"]] + match_stats)
-                    stats_df.loc[len(stats_df.index)] = new_row
+                    google_stats_df.loc[idx] = match_stats
                     print(f"Scraping was successful!")
                     break
                 except TimeoutException:
@@ -269,45 +272,50 @@ def scrape_all_matches(driver, matches_df, stats_df, league):
         else:
             print("The match is already in the DataFrame.")
 
+# function that attempts to export and waits for user to grant permissions in case they're denied
+def wait_for_permission_and_export(df, file_path):
+        while True:
+            try:
+                print(f"Exporting {file_path}.")
+                df.to_csv(file_path)
+                break
+            except PermissionError:
+                input("Cannot access the file. Please hit Enter when you closed the file.")
+
 def main():
     
     # get user input
-    league, season, google_url, odds_url = get_inputs_from_user()
+    league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path = get_inputs_from_user()
 
     #  initialize the driver and dataframes for the google match statistics and scrape all match statistics that weren't previously scraped.
     try:
-        driver, stats_df, matches_df, file_path = init_google_stats_scraping(league, season, google_url)
+        driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path)
+        wait_for_permission_and_export(matches_df, matches_file_path)
     except KeyboardInterrupt:
         pass
     else:           
         try:
-            scrape_all_matches(driver, matches_df, stats_df, league)
+            scrape_all_matches(driver, matches_df, google_stats_df, league)
             driver.quit()
         except KeyboardInterrupt:
             driver.quit()
-        while True:
-            try:
-                print("Exporting scraped google statistics to csv.")
-                stats_df.to_csv(file_path)
-                break
-            except PermissionError:
-                input("Permission to export csv denied. Please hit Enter when you closed the file.")
+        wait_for_permission_and_export(google_stats_df, google_file_path)
     
     # #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
     # try:
-    #     driver, stats_df, matches_df, file_path = init_google_stats_scraping(league, season, search_url)
+    #     driver, google_stats_df, matches_df, file_path = init_google_stats_scraping(league, season, search_url)
     # except KeyboardInterrupt:
     #     pass
     # else:           
     #     try:
-    #         scrape_all_matches(driver, matches_df, stats_df, league)
+    #         scrape_all_matches(driver, matches_df, google_stats_df, league)
     #         driver.quit()
     #     except KeyboardInterrupt:
     #         driver.quit()
     #     while True:
     #         try:
     #             print("Exporting scraped data to csv.")
-    #             stats_df.to_csv(file_path)
+    #             google_stats_df.to_csv(file_path)
     #             break
     #         except PermissionError:
     #             input("Permission to export csv denied. Please hit Enter when you closed the file.")
@@ -317,4 +325,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

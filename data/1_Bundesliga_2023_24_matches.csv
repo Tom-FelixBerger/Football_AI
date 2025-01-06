@@ -1,0 +1,307 @@
+Match_ID,Date,Matchday,Team_Home,Team_Away,Goals_Home,Goals_Away
+18.8.2023_Werder Bremen_Bayern_0_4,18.8.2023,Spieltag 1 von 34,Werder Bremen,Bayern,0,4
+19.8.2023_Wolfsburg_Heidenheim_2_0,19.8.2023,Spieltag 1 von 34,Wolfsburg,Heidenheim,2,0
+19.8.2023_Hoffenheim_Freiburg_1_2,19.8.2023,Spieltag 1 von 34,Hoffenheim,Freiburg,1,2
+19.8.2023_Augsburg_Mönchengladbach_4_4,19.8.2023,Spieltag 1 von 34,Augsburg,Mönchengladbach,4,4
+19.8.2023_VfB Stuttgart_Bochum_5_0,19.8.2023,Spieltag 1 von 34,VfB Stuttgart,Bochum,5,0
+19.8.2023_Leverkusen_RB Leipzig_3_2,19.8.2023,Spieltag 1 von 34,Leverkusen,RB Leipzig,3,2
+19.8.2023_Dortmund_Köln_1_0,19.8.2023,Spieltag 1 von 34,Dortmund,Köln,1,0
+20.8.2023_Union Berlin_Mainz_4_1,20.8.2023,Spieltag 1 von 34,Union Berlin,Mainz,4,1
+20.8.2023_Eintracht Frankfurt_Darmstadt 98_1_0,20.8.2023,Spieltag 1 von 34,Eintracht Frankfurt,Darmstadt 98,1,0
+25.8.2023_RB Leipzig_VfB Stuttgart_5_1,25.8.2023,Spieltag 2 von 34,RB Leipzig,VfB Stuttgart,5,1
+26.8.2023_Freiburg_Werder Bremen_1_0,26.8.2023,Spieltag 2 von 34,Freiburg,Werder Bremen,1,0
+26.8.2023_Heidenheim_Hoffenheim_2_3,26.8.2023,Spieltag 2 von 34,Heidenheim,Hoffenheim,2,3
+26.8.2023_Köln_Wolfsburg_1_2,26.8.2023,Spieltag 2 von 34,Köln,Wolfsburg,1,2
+26.8.2023_Darmstadt 98_Union Berlin_1_4,26.8.2023,Spieltag 2 von 34,Darmstadt 98,Union Berlin,1,4
+26.8.2023_Bochum_Dortmund_1_1,26.8.2023,Spieltag 2 von 34,Bochum,Dortmund,1,1
+26.8.2023_Mönchengladbach_Leverkusen_0_3,26.8.2023,Spieltag 2 von 34,Mönchengladbach,Leverkusen,0,3
+27.8.2023_Mainz_Eintracht Frankfurt_1_1,27.8.2023,Spieltag 2 von 34,Mainz,Eintracht Frankfurt,1,1
+27.8.2023_Bayern_Augsburg_3_1,27.8.2023,Spieltag 2 von 34,Bayern,Augsburg,3,1
+1.9.2023_Dortmund_Heidenheim_2_2,1.9.2023,Spieltag 3 von 34,Dortmund,Heidenheim,2,2
+2.9.2023_Augsburg_Bochum_2_2,2.9.2023,Spieltag 3 von 34,Augsburg,Bochum,2,2
+2.9.2023_Leverkusen_Darmstadt 98_5_1,2.9.2023,Spieltag 3 von 34,Leverkusen,Darmstadt 98,5,1
+2.9.2023_Hoffenheim_Wolfsburg_3_1,2.9.2023,Spieltag 3 von 34,Hoffenheim,Wolfsburg,3,1
+2.9.2023_Werder Bremen_Mainz_4_0,2.9.2023,Spieltag 3 von 34,Werder Bremen,Mainz,4,0
+2.9.2023_VfB Stuttgart_Freiburg_5_0,2.9.2023,Spieltag 3 von 34,VfB Stuttgart,Freiburg,5,0
+2.9.2023_Mönchengladbach_Bayern_1_2,2.9.2023,Spieltag 3 von 34,Mönchengladbach,Bayern,1,2
+3.9.2023_Eintracht Frankfurt_Köln_1_1,3.9.2023,Spieltag 3 von 34,Eintracht Frankfurt,Köln,1,1
+3.9.2023_Union Berlin_RB Leipzig_0_3,3.9.2023,Spieltag 3 von 34,Union Berlin,RB Leipzig,0,3
+15.9.2023_Bayern_Leverkusen_2_2,15.9.2023,Spieltag 4 von 34,Bayern,Leverkusen,2,2
+16.9.2023_Freiburg_Dortmund_2_4,16.9.2023,Spieltag 4 von 34,Freiburg,Dortmund,2,4
+16.9.2023_Wolfsburg_Union Berlin_2_1,16.9.2023,Spieltag 4 von 34,Wolfsburg,Union Berlin,2,1
+16.9.2023_Mainz_VfB Stuttgart_1_3,16.9.2023,Spieltag 4 von 34,Mainz,VfB Stuttgart,1,3
+16.9.2023_RB Leipzig_Augsburg_3_0,16.9.2023,Spieltag 4 von 34,RB Leipzig,Augsburg,3,0
+16.9.2023_Köln_Hoffenheim_1_3,16.9.2023,Spieltag 4 von 34,Köln,Hoffenheim,1,3
+16.9.2023_Bochum_Eintracht Frankfurt_1_1,16.9.2023,Spieltag 4 von 34,Bochum,Eintracht Frankfurt,1,1
+17.9.2023_Heidenheim_Werder Bremen_4_2,17.9.2023,Spieltag 4 von 34,Heidenheim,Werder Bremen,4,2
+17.9.2023_Darmstadt 98_Mönchengladbach_3_3,17.9.2023,Spieltag 4 von 34,Darmstadt 98,Mönchengladbach,3,3
+22.9.2023_VfB Stuttgart_Darmstadt 98_3_1,22.9.2023,Spieltag 5 von 34,VfB Stuttgart,Darmstadt 98,3,1
+23.9.2023_Augsburg_Mainz_2_1,23.9.2023,Spieltag 5 von 34,Augsburg,Mainz,2,1
+23.9.2023_Bayern_Bochum_7_0,23.9.2023,Spieltag 5 von 34,Bayern,Bochum,7,0
+23.9.2023_Mönchengladbach_RB Leipzig_0_1,23.9.2023,Spieltag 5 von 34,Mönchengladbach,RB Leipzig,0,1
+23.9.2023_Dortmund_Wolfsburg_1_0,23.9.2023,Spieltag 5 von 34,Dortmund,Wolfsburg,1,0
+23.9.2023_Union Berlin_Hoffenheim_0_2,23.9.2023,Spieltag 5 von 34,Union Berlin,Hoffenheim,0,2
+23.9.2023_Werder Bremen_Köln_2_1,23.9.2023,Spieltag 5 von 34,Werder Bremen,Köln,2,1
+24.9.2023_Leverkusen_Heidenheim_4_1,24.9.2023,Spieltag 5 von 34,Leverkusen,Heidenheim,4,1
+24.9.2023_Eintracht Frankfurt_Freiburg_0_0,24.9.2023,Spieltag 5 von 34,Eintracht Frankfurt,Freiburg,0,0
+29.9.2023_Hoffenheim_Dortmund_1_3,29.9.2023,Spieltag 6 von 34,Hoffenheim,Dortmund,1,3
+30.9.2023_Mainz_Leverkusen_0_3,30.9.2023,Spieltag 6 von 34,Mainz,Leverkusen,0,3
+30.9.2023_Köln_VfB Stuttgart_0_2,30.9.2023,Spieltag 6 von 34,Köln,VfB Stuttgart,0,2
+30.9.2023_Heidenheim_Union Berlin_1_0,30.9.2023,Spieltag 6 von 34,Heidenheim,Union Berlin,1,0
+30.9.2023_Wolfsburg_Eintracht Frankfurt_2_0,30.9.2023,Spieltag 6 von 34,Wolfsburg,Eintracht Frankfurt,2,0
+30.9.2023_Bochum_Mönchengladbach_1_3,30.9.2023,Spieltag 6 von 34,Bochum,Mönchengladbach,1,3
+30.9.2023_RB Leipzig_Bayern_2_2,30.9.2023,Spieltag 6 von 34,RB Leipzig,Bayern,2,2
+1.10.2023_Darmstadt 98_Werder Bremen_4_2,1.10.2023,Spieltag 6 von 34,Darmstadt 98,Werder Bremen,4,2
+1.10.2023_Freiburg_Augsburg_2_0,1.10.2023,Spieltag 6 von 34,Freiburg,Augsburg,2,0
+6.10.2023_Mönchengladbach_Mainz_2_2,6.10.2023,Spieltag 7 von 34,Mönchengladbach,Mainz,2,2
+7.10.2023_RB Leipzig_Bochum_0_0,7.10.2023,Spieltag 7 von 34,RB Leipzig,Bochum,0,0
+7.10.2023_VfB Stuttgart_Wolfsburg_3_1,7.10.2023,Spieltag 7 von 34,VfB Stuttgart,Wolfsburg,3,1
+7.10.2023_Dortmund_Union Berlin_4_2,7.10.2023,Spieltag 7 von 34,Dortmund,Union Berlin,4,2
+7.10.2023_Augsburg_Darmstadt 98_1_2,7.10.2023,Spieltag 7 von 34,Augsburg,Darmstadt 98,1,2
+7.10.2023_Werder Bremen_Hoffenheim_2_3,7.10.2023,Spieltag 7 von 34,Werder Bremen,Hoffenheim,2,3
+8.10.2023_Leverkusen_Köln_3_0,8.10.2023,Spieltag 7 von 34,Leverkusen,Köln,3,0
+8.10.2023_Bayern_Freiburg_3_0,8.10.2023,Spieltag 7 von 34,Bayern,Freiburg,3,0
+8.10.2023_Eintracht Frankfurt_Heidenheim_2_0,8.10.2023,Spieltag 7 von 34,Eintracht Frankfurt,Heidenheim,2,0
+20.10.2023_Dortmund_Werder Bremen_1_0,20.10.2023,Spieltag 8 von 34,Dortmund,Werder Bremen,1,0
+21.10.2023_Wolfsburg_Leverkusen_1_2,21.10.2023,Spieltag 8 von 34,Wolfsburg,Leverkusen,1,2
+21.10.2023_Darmstadt 98_RB Leipzig_1_3,21.10.2023,Spieltag 8 von 34,Darmstadt 98,RB Leipzig,1,3
+21.10.2023_Union Berlin_VfB Stuttgart_0_3,21.10.2023,Spieltag 8 von 34,Union Berlin,VfB Stuttgart,0,3
+21.10.2023_Hoffenheim_Eintracht Frankfurt_1_3,21.10.2023,Spieltag 8 von 34,Hoffenheim,Eintracht Frankfurt,1,3
+21.10.2023_Freiburg_Bochum_2_1,21.10.2023,Spieltag 8 von 34,Freiburg,Bochum,2,1
+21.10.2023_Mainz_Bayern_1_3,21.10.2023,Spieltag 8 von 34,Mainz,Bayern,1,3
+22.10.2023_Köln_Mönchengladbach_3_1,22.10.2023,Spieltag 8 von 34,Köln,Mönchengladbach,3,1
+22.10.2023_Heidenheim_Augsburg_2_5,22.10.2023,Spieltag 8 von 34,Heidenheim,Augsburg,2,5
+27.10.2023_Bochum_Mainz_2_2,27.10.2023,Spieltag 9 von 34,Bochum,Mainz,2,2
+28.10.2023_Augsburg_Wolfsburg_3_2,28.10.2023,Spieltag 9 von 34,Augsburg,Wolfsburg,3,2
+28.10.2023_Werder Bremen_Union Berlin_2_0,28.10.2023,Spieltag 9 von 34,Werder Bremen,Union Berlin,2,0
+28.10.2023_Bayern_Darmstadt 98_8_0,28.10.2023,Spieltag 9 von 34,Bayern,Darmstadt 98,8,0
+28.10.2023_Mönchengladbach_Heidenheim_2_1,28.10.2023,Spieltag 9 von 34,Mönchengladbach,Heidenheim,2,1
+28.10.2023_VfB Stuttgart_Hoffenheim_2_3,28.10.2023,Spieltag 9 von 34,VfB Stuttgart,Hoffenheim,2,3
+28.10.2023_RB Leipzig_Köln_6_0,28.10.2023,Spieltag 9 von 34,RB Leipzig,Köln,6,0
+29.10.2023_Eintracht Frankfurt_Dortmund_3_3,29.10.2023,Spieltag 9 von 34,Eintracht Frankfurt,Dortmund,3,3
+29.10.2023_Leverkusen_Freiburg_2_1,29.10.2023,Spieltag 9 von 34,Leverkusen,Freiburg,2,1
+3.11.2023_Darmstadt 98_Bochum_1_2,3.11.2023,Spieltag 10 von 34,Darmstadt 98,Bochum,1,2
+4.11.2023_Union Berlin_Eintracht Frankfurt_0_3,4.11.2023,Spieltag 10 von 34,Union Berlin,Eintracht Frankfurt,0,3
+4.11.2023_Freiburg_Mönchengladbach_3_3,4.11.2023,Spieltag 10 von 34,Freiburg,Mönchengladbach,3,3
+4.11.2023_Hoffenheim_Leverkusen_2_3,4.11.2023,Spieltag 10 von 34,Hoffenheim,Leverkusen,2,3
+4.11.2023_Mainz_RB Leipzig_2_0,4.11.2023,Spieltag 10 von 34,Mainz,RB Leipzig,2,0
+4.11.2023_Köln_Augsburg_1_1,4.11.2023,Spieltag 10 von 34,Köln,Augsburg,1,1
+4.11.2023_Dortmund_Bayern_0_4,4.11.2023,Spieltag 10 von 34,Dortmund,Bayern,0,4
+5.11.2023_Wolfsburg_Werder Bremen_2_2,5.11.2023,Spieltag 10 von 34,Wolfsburg,Werder Bremen,2,2
+5.11.2023_Heidenheim_VfB Stuttgart_2_0,5.11.2023,Spieltag 10 von 34,Heidenheim,VfB Stuttgart,2,0
+10.11.2023_Mönchengladbach_Wolfsburg_4_0,10.11.2023,Spieltag 11 von 34,Mönchengladbach,Wolfsburg,4,0
+11.11.2023_Darmstadt 98_Mainz_0_0,11.11.2023,Spieltag 11 von 34,Darmstadt 98,Mainz,0,0
+11.11.2023_Augsburg_Hoffenheim_1_1,11.11.2023,Spieltag 11 von 34,Augsburg,Hoffenheim,1,1
+11.11.2023_Bayern_Heidenheim_4_2,11.11.2023,Spieltag 11 von 34,Bayern,Heidenheim,4,2
+11.11.2023_VfB Stuttgart_Dortmund_2_1,11.11.2023,Spieltag 11 von 34,VfB Stuttgart,Dortmund,2,1
+11.11.2023_Bochum_Köln_1_1,11.11.2023,Spieltag 11 von 34,Bochum,Köln,1,1
+12.11.2023_Leverkusen_Union Berlin_4_0,12.11.2023,Spieltag 11 von 34,Leverkusen,Union Berlin,4,0
+12.11.2023_Werder Bremen_Eintracht Frankfurt_2_2,12.11.2023,Spieltag 11 von 34,Werder Bremen,Eintracht Frankfurt,2,2
+12.11.2023_RB Leipzig_Freiburg_3_1,12.11.2023,Spieltag 11 von 34,RB Leipzig,Freiburg,3,1
+24.11.2023_Köln_Bayern_0_1,24.11.2023,Spieltag 12 von 34,Köln,Bayern,0,1
+25.11.2023_Werder Bremen_Leverkusen_0_3,25.11.2023,Spieltag 12 von 34,Werder Bremen,Leverkusen,0,3
+25.11.2023_Freiburg_Darmstadt 98_1_1,25.11.2023,Spieltag 12 von 34,Freiburg,Darmstadt 98,1,1
+25.11.2023_Wolfsburg_RB Leipzig_2_1,25.11.2023,Spieltag 12 von 34,Wolfsburg,RB Leipzig,2,1
+25.11.2023_Union Berlin_Augsburg_1_1,25.11.2023,Spieltag 12 von 34,Union Berlin,Augsburg,1,1
+25.11.2023_Dortmund_Mönchengladbach_4_2,25.11.2023,Spieltag 12 von 34,Dortmund,Mönchengladbach,4,2
+25.11.2023_Eintracht Frankfurt_VfB Stuttgart_1_2,25.11.2023,Spieltag 12 von 34,Eintracht Frankfurt,VfB Stuttgart,1,2
+26.11.2023_Heidenheim_Bochum_0_0,26.11.2023,Spieltag 12 von 34,Heidenheim,Bochum,0,0
+26.11.2023_Hoffenheim_Mainz_1_1,26.11.2023,Spieltag 12 von 34,Hoffenheim,Mainz,1,1
+1.12.2023_Darmstadt 98_Köln_0_1,1.12.2023,Spieltag 13 von 34,Darmstadt 98,Köln,0,1
+2.12.2023_Bochum_Wolfsburg_3_1,2.12.2023,Spieltag 13 von 34,Bochum,Wolfsburg,3,1
+2.12.2023_RB Leipzig_Heidenheim_2_1,2.12.2023,Spieltag 13 von 34,RB Leipzig,Heidenheim,2,1
+2.12.2023_Mönchengladbach_Hoffenheim_2_1,2.12.2023,Spieltag 13 von 34,Mönchengladbach,Hoffenheim,2,1
+2.12.2023_VfB Stuttgart_Werder Bremen_2_0,2.12.2023,Spieltag 13 von 34,VfB Stuttgart,Werder Bremen,2,0
+3.12.2023_Mainz_Freiburg_0_1,3.12.2023,Spieltag 13 von 34,Mainz,Freiburg,0,1
+3.12.2023_Leverkusen_Dortmund_1_1,3.12.2023,Spieltag 13 von 34,Leverkusen,Dortmund,1,1
+3.12.2023_Augsburg_Eintracht Frankfurt_2_1,3.12.2023,Spieltag 13 von 34,Augsburg,Eintracht Frankfurt,2,1
+8.12.2023_Hoffenheim_Bochum_3_1,8.12.2023,Spieltag 14 von 34,Hoffenheim,Bochum,3,1
+9.12.2023_Heidenheim_Darmstadt 98_3_2,9.12.2023,Spieltag 14 von 34,Heidenheim,Darmstadt 98,3,2
+9.12.2023_Wolfsburg_Freiburg_0_1,9.12.2023,Spieltag 14 von 34,Wolfsburg,Freiburg,0,1
+9.12.2023_Eintracht Frankfurt_Bayern_5_1,9.12.2023,Spieltag 14 von 34,Eintracht Frankfurt,Bayern,5,1
+9.12.2023_Werder Bremen_Augsburg_2_0,9.12.2023,Spieltag 14 von 34,Werder Bremen,Augsburg,2,0
+9.12.2023_Union Berlin_Mönchengladbach_3_1,9.12.2023,Spieltag 14 von 34,Union Berlin,Mönchengladbach,3,1
+9.12.2023_Dortmund_RB Leipzig_2_3,9.12.2023,Spieltag 14 von 34,Dortmund,RB Leipzig,2,3
+10.12.2023_VfB Stuttgart_Leverkusen_1_1,10.12.2023,Spieltag 14 von 34,VfB Stuttgart,Leverkusen,1,1
+10.12.2023_Köln_Mainz_0_0,10.12.2023,Spieltag 14 von 34,Köln,Mainz,0,0
+15.12.2023_Mönchengladbach_Werder Bremen_2_2,15.12.2023,Spieltag 15 von 34,Mönchengladbach,Werder Bremen,2,2
+16.12.2023_Darmstadt 98_Wolfsburg_0_1,16.12.2023,Spieltag 15 von 34,Darmstadt 98,Wolfsburg,0,1
+16.12.2023_Bochum_Union Berlin_3_0,16.12.2023,Spieltag 15 von 34,Bochum,Union Berlin,3,0
+16.12.2023_Augsburg_Dortmund_1_1,16.12.2023,Spieltag 15 von 34,Augsburg,Dortmund,1,1
+16.12.2023_Mainz_Heidenheim_0_1,16.12.2023,Spieltag 15 von 34,Mainz,Heidenheim,0,1
+16.12.2023_RB Leipzig_Hoffenheim_3_1,16.12.2023,Spieltag 15 von 34,RB Leipzig,Hoffenheim,3,1
+17.12.2023_Freiburg_Köln_2_0,17.12.2023,Spieltag 15 von 34,Freiburg,Köln,2,0
+17.12.2023_Leverkusen_Eintracht Frankfurt_3_0,17.12.2023,Spieltag 15 von 34,Leverkusen,Eintracht Frankfurt,3,0
+17.12.2023_Bayern_VfB Stuttgart_3_0,17.12.2023,Spieltag 15 von 34,Bayern,VfB Stuttgart,3,0
+19.12.2023_Werder Bremen_RB Leipzig_1_1,19.12.2023,Spieltag 16 von 34,Werder Bremen,RB Leipzig,1,1
+19.12.2023_Dortmund_Mainz_1_1,19.12.2023,Spieltag 16 von 34,Dortmund,Mainz,1,1
+19.12.2023_Hoffenheim_Darmstadt 98_3_3,19.12.2023,Spieltag 16 von 34,Hoffenheim,Darmstadt 98,3,3
+20.12.2023_Union Berlin_Köln_2_0,20.12.2023,Spieltag 16 von 34,Union Berlin,Köln,2,0
+20.12.2023_Eintracht Frankfurt_Mönchengladbach_2_1,20.12.2023,Spieltag 16 von 34,Eintracht Frankfurt,Mönchengladbach,2,1
+20.12.2023_Heidenheim_Freiburg_3_2,20.12.2023,Spieltag 16 von 34,Heidenheim,Freiburg,3,2
+20.12.2023_VfB Stuttgart_Augsburg_3_0,20.12.2023,Spieltag 16 von 34,VfB Stuttgart,Augsburg,3,0
+20.12.2023_Leverkusen_Bochum_4_0,20.12.2023,Spieltag 16 von 34,Leverkusen,Bochum,4,0
+20.12.2023_Wolfsburg_Bayern_1_2,20.12.2023,Spieltag 16 von 34,Wolfsburg,Bayern,1,2
+12.1.2024_Bayern_Hoffenheim_3_0,12.1.2024,Spieltag 17 von 34,Bayern,Hoffenheim,3,0
+13.1.2024_Freiburg_Union Berlin_0_0,13.1.2024,Spieltag 17 von 34,Freiburg,Union Berlin,0,0
+13.1.2024_Mainz_Wolfsburg_1_1,13.1.2024,Spieltag 17 von 34,Mainz,Wolfsburg,1,1
+13.1.2024_Augsburg_Leverkusen_0_1,13.1.2024,Spieltag 17 von 34,Augsburg,Leverkusen,0,1
+13.1.2024_RB Leipzig_Eintracht Frankfurt_0_1,13.1.2024,Spieltag 17 von 34,RB Leipzig,Eintracht Frankfurt,0,1
+13.1.2024_Köln_Heidenheim_1_1,13.1.2024,Spieltag 17 von 34,Köln,Heidenheim,1,1
+13.1.2024_Darmstadt 98_Dortmund_0_3,13.1.2024,Spieltag 17 von 34,Darmstadt 98,Dortmund,0,3
+14.1.2024_Bochum_Werder Bremen_1_1,14.1.2024,Spieltag 17 von 34,Bochum,Werder Bremen,1,1
+14.1.2024_Mönchengladbach_VfB Stuttgart_3_1,14.1.2024,Spieltag 17 von 34,Mönchengladbach,VfB Stuttgart,3,1
+20.1.2024_Darmstadt 98_Eintracht Frankfurt_2_2,20.1.2024,Spieltag 18 von 34,Darmstadt 98,Eintracht Frankfurt,2,2
+20.1.2024_Köln_Dortmund_0_4,20.1.2024,Spieltag 18 von 34,Köln,Dortmund,0,4
+20.1.2024_Freiburg_Hoffenheim_3_2,20.1.2024,Spieltag 18 von 34,Freiburg,Hoffenheim,3,2
+20.1.2024_Bochum_VfB Stuttgart_1_0,20.1.2024,Spieltag 18 von 34,Bochum,VfB Stuttgart,1,0
+20.1.2024_Heidenheim_Wolfsburg_1_1,20.1.2024,Spieltag 18 von 34,Heidenheim,Wolfsburg,1,1
+20.1.2024_RB Leipzig_Leverkusen_2_3,20.1.2024,Spieltag 18 von 34,RB Leipzig,Leverkusen,2,3
+21.1.2024_Bayern_Werder Bremen_0_1,21.1.2024,Spieltag 18 von 34,Bayern,Werder Bremen,0,1
+21.1.2024_Mönchengladbach_Augsburg_1_2,21.1.2024,Spieltag 18 von 34,Mönchengladbach,Augsburg,1,2
+24.1.2024_Bayern_Union Berlin_1_0,24.1.2024,Spieltag 13 von 34,Bayern,Union Berlin,1,0
+26.1.2024_Eintracht Frankfurt_Mainz_1_0,26.1.2024,Spieltag 19 von 34,Eintracht Frankfurt,Mainz,1,0
+27.1.2024_VfB Stuttgart_RB Leipzig_5_2,27.1.2024,Spieltag 19 von 34,VfB Stuttgart,RB Leipzig,5,2
+27.1.2024_Hoffenheim_Heidenheim_1_1,27.1.2024,Spieltag 19 von 34,Hoffenheim,Heidenheim,1,1
+27.1.2024_Augsburg_Bayern_2_3,27.1.2024,Spieltag 19 von 34,Augsburg,Bayern,2,3
+27.1.2024_Werder Bremen_Freiburg_3_1,27.1.2024,Spieltag 19 von 34,Werder Bremen,Freiburg,3,1
+27.1.2024_Wolfsburg_Köln_1_1,27.1.2024,Spieltag 19 von 34,Wolfsburg,Köln,1,1
+27.1.2024_Leverkusen_Mönchengladbach_0_0,27.1.2024,Spieltag 19 von 34,Leverkusen,Mönchengladbach,0,0
+28.1.2024_Union Berlin_Darmstadt 98_1_0,28.1.2024,Spieltag 19 von 34,Union Berlin,Darmstadt 98,1,0
+28.1.2024_Dortmund_Bochum_3_1,28.1.2024,Spieltag 19 von 34,Dortmund,Bochum,3,1
+2.2.2024_Heidenheim_Dortmund_0_0,2.2.2024,Spieltag 20 von 34,Heidenheim,Dortmund,0,0
+3.2.2024_Mainz_Werder Bremen_0_1,3.2.2024,Spieltag 20 von 34,Mainz,Werder Bremen,0,1
+3.2.2024_Bochum_Augsburg_1_1,3.2.2024,Spieltag 20 von 34,Bochum,Augsburg,1,1
+3.2.2024_Darmstadt 98_Leverkusen_0_2,3.2.2024,Spieltag 20 von 34,Darmstadt 98,Leverkusen,0,2
+3.2.2024_Freiburg_VfB Stuttgart_1_3,3.2.2024,Spieltag 20 von 34,Freiburg,VfB Stuttgart,1,3
+3.2.2024_Bayern_Mönchengladbach_3_1,3.2.2024,Spieltag 20 von 34,Bayern,Mönchengladbach,3,1
+3.2.2024_Köln_Eintracht Frankfurt_2_0,3.2.2024,Spieltag 20 von 34,Köln,Eintracht Frankfurt,2,0
+4.2.2024_Wolfsburg_Hoffenheim_2_2,4.2.2024,Spieltag 20 von 34,Wolfsburg,Hoffenheim,2,2
+4.2.2024_RB Leipzig_Union Berlin_2_0,4.2.2024,Spieltag 20 von 34,RB Leipzig,Union Berlin,2,0
+7.2.2024_Mainz_Union Berlin_1_1,7.2.2024,Spieltag 18 von 34,Mainz,Union Berlin,1,1
+9.2.2024_Dortmund_Freiburg_3_0,9.2.2024,Spieltag 21 von 34,Dortmund,Freiburg,3,0
+10.2.2024_Augsburg_RB Leipzig_2_2,10.2.2024,Spieltag 21 von 34,Augsburg,RB Leipzig,2,2
+10.2.2024_Werder Bremen_Heidenheim_1_2,10.2.2024,Spieltag 21 von 34,Werder Bremen,Heidenheim,1,2
+10.2.2024_Mönchengladbach_Darmstadt 98_0_0,10.2.2024,Spieltag 21 von 34,Mönchengladbach,Darmstadt 98,0,0
+10.2.2024_Union Berlin_Wolfsburg_1_0,10.2.2024,Spieltag 21 von 34,Union Berlin,Wolfsburg,1,0
+10.2.2024_Eintracht Frankfurt_Bochum_1_1,10.2.2024,Spieltag 21 von 34,Eintracht Frankfurt,Bochum,1,1
+10.2.2024_Leverkusen_Bayern_3_0,10.2.2024,Spieltag 21 von 34,Leverkusen,Bayern,3,0
+11.2.2024_VfB Stuttgart_Mainz_3_1,11.2.2024,Spieltag 21 von 34,VfB Stuttgart,Mainz,3,1
+11.2.2024_Hoffenheim_Köln_1_1,11.2.2024,Spieltag 21 von 34,Hoffenheim,Köln,1,1
+16.2.2024_Köln_Werder Bremen_0_1,16.2.2024,Spieltag 22 von 34,Köln,Werder Bremen,0,1
+17.2.2024_Hoffenheim_Union Berlin_0_1,17.2.2024,Spieltag 22 von 34,Hoffenheim,Union Berlin,0,1
+17.2.2024_Wolfsburg_Dortmund_1_1,17.2.2024,Spieltag 22 von 34,Wolfsburg,Dortmund,1,1
+17.2.2024_Heidenheim_Leverkusen_1_2,17.2.2024,Spieltag 22 von 34,Heidenheim,Leverkusen,1,2
+17.2.2024_Darmstadt 98_VfB Stuttgart_1_2,17.2.2024,Spieltag 22 von 34,Darmstadt 98,VfB Stuttgart,1,2
+17.2.2024_Mainz_Augsburg_1_0,17.2.2024,Spieltag 22 von 34,Mainz,Augsburg,1,0
+17.2.2024_RB Leipzig_Mönchengladbach_2_0,17.2.2024,Spieltag 22 von 34,RB Leipzig,Mönchengladbach,2,0
+18.2.2024_Freiburg_Eintracht Frankfurt_3_3,18.2.2024,Spieltag 22 von 34,Freiburg,Eintracht Frankfurt,3,3
+18.2.2024_Bochum_Bayern_3_2,18.2.2024,Spieltag 22 von 34,Bochum,Bayern,3,2
+23.2.2024_Leverkusen_Mainz_2_1,23.2.2024,Spieltag 23 von 34,Leverkusen,Mainz,2,1
+24.2.2024_Union Berlin_Heidenheim_2_2,24.2.2024,Spieltag 23 von 34,Union Berlin,Heidenheim,2,2
+24.2.2024_Werder Bremen_Darmstadt 98_1_1,24.2.2024,Spieltag 23 von 34,Werder Bremen,Darmstadt 98,1,1
+24.2.2024_VfB Stuttgart_Köln_1_1,24.2.2024,Spieltag 23 von 34,VfB Stuttgart,Köln,1,1
+24.2.2024_Mönchengladbach_Bochum_5_2,24.2.2024,Spieltag 23 von 34,Mönchengladbach,Bochum,5,2
+24.2.2024_Bayern_RB Leipzig_2_1,24.2.2024,Spieltag 23 von 34,Bayern,RB Leipzig,2,1
+25.2.2024_Eintracht Frankfurt_Wolfsburg_2_2,25.2.2024,Spieltag 23 von 34,Eintracht Frankfurt,Wolfsburg,2,2
+25.2.2024_Dortmund_Hoffenheim_2_3,25.2.2024,Spieltag 23 von 34,Dortmund,Hoffenheim,2,3
+25.2.2024_Augsburg_Freiburg_2_1,25.2.2024,Spieltag 23 von 34,Augsburg,Freiburg,2,1
+1.3.2024_Freiburg_Bayern_2_2,1.3.2024,Spieltag 24 von 34,Freiburg,Bayern,2,2
+2.3.2024_Mainz_Mönchengladbach_1_1,2.3.2024,Spieltag 24 von 34,Mainz,Mönchengladbach,1,1
+2.3.2024_Heidenheim_Eintracht Frankfurt_1_2,2.3.2024,Spieltag 24 von 34,Heidenheim,Eintracht Frankfurt,1,2
+2.3.2024_Union Berlin_Dortmund_0_2,2.3.2024,Spieltag 24 von 34,Union Berlin,Dortmund,0,2
+2.3.2024_Darmstadt 98_Augsburg_0_6,2.3.2024,Spieltag 24 von 34,Darmstadt 98,Augsburg,0,6
+2.3.2024_Bochum_RB Leipzig_1_4,2.3.2024,Spieltag 24 von 34,Bochum,RB Leipzig,1,4
+2.3.2024_Wolfsburg_VfB Stuttgart_2_3,2.3.2024,Spieltag 24 von 34,Wolfsburg,VfB Stuttgart,2,3
+3.3.2024_Köln_Leverkusen_0_2,3.3.2024,Spieltag 24 von 34,Köln,Leverkusen,0,2
+3.3.2024_Hoffenheim_Werder Bremen_2_1,3.3.2024,Spieltag 24 von 34,Hoffenheim,Werder Bremen,2,1
+8.3.2024_VfB Stuttgart_Union Berlin_2_0,8.3.2024,Spieltag 25 von 34,VfB Stuttgart,Union Berlin,2,0
+9.3.2024_Mönchengladbach_Köln_3_3,9.3.2024,Spieltag 25 von 34,Mönchengladbach,Köln,3,3
+9.3.2024_RB Leipzig_Darmstadt 98_2_0,9.3.2024,Spieltag 25 von 34,RB Leipzig,Darmstadt 98,2,0
+9.3.2024_Bayern_Mainz_8_1,9.3.2024,Spieltag 25 von 34,Bayern,Mainz,8,1
+9.3.2024_Augsburg_Heidenheim_1_0,9.3.2024,Spieltag 25 von 34,Augsburg,Heidenheim,1,0
+9.3.2024_Werder Bremen_Dortmund_1_2,9.3.2024,Spieltag 25 von 34,Werder Bremen,Dortmund,1,2
+10.3.2024_Bochum_Freiburg_1_2,10.3.2024,Spieltag 25 von 34,Bochum,Freiburg,1,2
+10.3.2024_Eintracht Frankfurt_Hoffenheim_3_1,10.3.2024,Spieltag 25 von 34,Eintracht Frankfurt,Hoffenheim,3,1
+10.3.2024_Leverkusen_Wolfsburg_2_0,10.3.2024,Spieltag 25 von 34,Leverkusen,Wolfsburg,2,0
+15.3.2024_Köln_RB Leipzig_1_5,15.3.2024,Spieltag 26 von 34,Köln,RB Leipzig,1,5
+16.3.2024_Mainz_Bochum_2_0,16.3.2024,Spieltag 26 von 34,Mainz,Bochum,2,0
+16.3.2024_Wolfsburg_Augsburg_1_3,16.3.2024,Spieltag 26 von 34,Wolfsburg,Augsburg,1,3
+16.3.2024_Union Berlin_Werder Bremen_2_1,16.3.2024,Spieltag 26 von 34,Union Berlin,Werder Bremen,2,1
+16.3.2024_Heidenheim_Mönchengladbach_1_1,16.3.2024,Spieltag 26 von 34,Heidenheim,Mönchengladbach,1,1
+16.3.2024_Darmstadt 98_Bayern_2_5,16.3.2024,Spieltag 26 von 34,Darmstadt 98,Bayern,2,5
+16.3.2024_Hoffenheim_VfB Stuttgart_0_3,16.3.2024,Spieltag 26 von 34,Hoffenheim,VfB Stuttgart,0,3
+17.3.2024_Freiburg_Leverkusen_2_3,17.3.2024,Spieltag 26 von 34,Freiburg,Leverkusen,2,3
+17.3.2024_Dortmund_Eintracht Frankfurt_3_1,17.3.2024,Spieltag 26 von 34,Dortmund,Eintracht Frankfurt,3,1
+30.3.2024_Mönchengladbach_Freiburg_0_3,30.3.2024,Spieltag 27 von 34,Mönchengladbach,Freiburg,0,3
+30.3.2024_Eintracht Frankfurt_Union Berlin_0_0,30.3.2024,Spieltag 27 von 34,Eintracht Frankfurt,Union Berlin,0,0
+30.3.2024_Leverkusen_Hoffenheim_2_1,30.3.2024,Spieltag 27 von 34,Leverkusen,Hoffenheim,2,1
+30.3.2024_Werder Bremen_Wolfsburg_0_2,30.3.2024,Spieltag 27 von 34,Werder Bremen,Wolfsburg,0,2
+30.3.2024_RB Leipzig_Mainz_0_0,30.3.2024,Spieltag 27 von 34,RB Leipzig,Mainz,0,0
+30.3.2024_Bayern_Dortmund_0_2,30.3.2024,Spieltag 27 von 34,Bayern,Dortmund,0,2
+31.3.2024_Augsburg_Köln_1_1,31.3.2024,Spieltag 27 von 34,Augsburg,Köln,1,1
+31.3.2024_VfB Stuttgart_Heidenheim_3_3,31.3.2024,Spieltag 27 von 34,VfB Stuttgart,Heidenheim,3,3
+31.3.2024_Bochum_Darmstadt 98_2_2,31.3.2024,Spieltag 27 von 34,Bochum,Darmstadt 98,2,2
+5.4.2024_Eintracht Frankfurt_Werder Bremen_1_1,5.4.2024,Spieltag 28 von 34,Eintracht Frankfurt,Werder Bremen,1,1
+6.4.2024_Freiburg_RB Leipzig_1_4,6.4.2024,Spieltag 28 von 34,Freiburg,RB Leipzig,1,4
+6.4.2024_Mainz_Darmstadt 98_4_0,6.4.2024,Spieltag 28 von 34,Mainz,Darmstadt 98,4,0
+6.4.2024_Köln_Bochum_2_1,6.4.2024,Spieltag 28 von 34,Köln,Bochum,2,1
+6.4.2024_Heidenheim_Bayern_3_2,6.4.2024,Spieltag 28 von 34,Heidenheim,Bayern,3,2
+6.4.2024_Union Berlin_Leverkusen_0_1,6.4.2024,Spieltag 28 von 34,Union Berlin,Leverkusen,0,1
+6.4.2024_Dortmund_VfB Stuttgart_0_1,6.4.2024,Spieltag 28 von 34,Dortmund,VfB Stuttgart,0,1
+7.4.2024_Hoffenheim_Augsburg_3_1,7.4.2024,Spieltag 28 von 34,Hoffenheim,Augsburg,3,1
+7.4.2024_Wolfsburg_Mönchengladbach_1_3,7.4.2024,Spieltag 28 von 34,Wolfsburg,Mönchengladbach,1,3
+12.4.2024_Augsburg_Union Berlin_2_0,12.4.2024,Spieltag 29 von 34,Augsburg,Union Berlin,2,0
+13.4.2024_Bayern_Köln_2_0,13.4.2024,Spieltag 29 von 34,Bayern,Köln,2,0
+13.4.2024_Mainz_Hoffenheim_4_1,13.4.2024,Spieltag 29 von 34,Mainz,Hoffenheim,4,1
+13.4.2024_Mönchengladbach_Dortmund_1_2,13.4.2024,Spieltag 29 von 34,Mönchengladbach,Dortmund,1,2
+13.4.2024_Bochum_Heidenheim_1_1,13.4.2024,Spieltag 29 von 34,Bochum,Heidenheim,1,1
+13.4.2024_RB Leipzig_Wolfsburg_3_0,13.4.2024,Spieltag 29 von 34,RB Leipzig,Wolfsburg,3,0
+13.4.2024_VfB Stuttgart_Eintracht Frankfurt_3_0,13.4.2024,Spieltag 29 von 34,VfB Stuttgart,Eintracht Frankfurt,3,0
+14.4.2024_Darmstadt 98_Freiburg_0_1,14.4.2024,Spieltag 29 von 34,Darmstadt 98,Freiburg,0,1
+14.4.2024_Leverkusen_Werder Bremen_5_0,14.4.2024,Spieltag 29 von 34,Leverkusen,Werder Bremen,5,0
+19.4.2024_Eintracht Frankfurt_Augsburg_3_1,19.4.2024,Spieltag 30 von 34,Eintracht Frankfurt,Augsburg,3,1
+20.4.2024_Heidenheim_RB Leipzig_1_2,20.4.2024,Spieltag 30 von 34,Heidenheim,RB Leipzig,1,2
+20.4.2024_Wolfsburg_Bochum_1_0,20.4.2024,Spieltag 30 von 34,Wolfsburg,Bochum,1,0
+20.4.2024_Köln_Darmstadt 98_0_2,20.4.2024,Spieltag 30 von 34,Köln,Darmstadt 98,0,2
+20.4.2024_Hoffenheim_Mönchengladbach_4_3,20.4.2024,Spieltag 30 von 34,Hoffenheim,Mönchengladbach,4,3
+20.4.2024_Union Berlin_Bayern_1_5,20.4.2024,Spieltag 30 von 34,Union Berlin,Bayern,1,5
+21.4.2024_Werder Bremen_VfB Stuttgart_2_1,21.4.2024,Spieltag 30 von 34,Werder Bremen,VfB Stuttgart,2,1
+21.4.2024_Dortmund_Leverkusen_1_1,21.4.2024,Spieltag 30 von 34,Dortmund,Leverkusen,1,1
+21.4.2024_Freiburg_Mainz_1_1,21.4.2024,Spieltag 30 von 34,Freiburg,Mainz,1,1
+26.4.2024_Bochum_Hoffenheim_3_2,26.4.2024,Spieltag 31 von 34,Bochum,Hoffenheim,3,2
+27.4.2024_Augsburg_Werder Bremen_0_3,27.4.2024,Spieltag 31 von 34,Augsburg,Werder Bremen,0,3
+27.4.2024_Freiburg_Wolfsburg_1_2,27.4.2024,Spieltag 31 von 34,Freiburg,Wolfsburg,1,2
+27.4.2024_Bayern_Eintracht Frankfurt_2_1,27.4.2024,Spieltag 31 von 34,Bayern,Eintracht Frankfurt,2,1
+27.4.2024_RB Leipzig_Dortmund_4_1,27.4.2024,Spieltag 31 von 34,RB Leipzig,Dortmund,4,1
+27.4.2024_Leverkusen_VfB Stuttgart_2_2,27.4.2024,Spieltag 31 von 34,Leverkusen,VfB Stuttgart,2,2
+28.4.2024_Mönchengladbach_Union Berlin_0_0,28.4.2024,Spieltag 31 von 34,Mönchengladbach,Union Berlin,0,0
+28.4.2024_Mainz_Köln_1_1,28.4.2024,Spieltag 31 von 34,Mainz,Köln,1,1
+28.4.2024_Darmstadt 98_Heidenheim_0_1,28.4.2024,Spieltag 31 von 34,Darmstadt 98,Heidenheim,0,1
+3.5.2024_Hoffenheim_RB Leipzig_1_1,3.5.2024,Spieltag 32 von 34,Hoffenheim,RB Leipzig,1,1
+4.5.2024_VfB Stuttgart_Bayern_3_1,4.5.2024,Spieltag 32 von 34,VfB Stuttgart,Bayern,3,1
+4.5.2024_Werder Bremen_Mönchengladbach_2_2,4.5.2024,Spieltag 32 von 34,Werder Bremen,Mönchengladbach,2,2
+4.5.2024_Dortmund_Augsburg_5_1,4.5.2024,Spieltag 32 von 34,Dortmund,Augsburg,5,1
+4.5.2024_Wolfsburg_Darmstadt 98_3_0,4.5.2024,Spieltag 32 von 34,Wolfsburg,Darmstadt 98,3,0
+4.5.2024_Köln_Freiburg_0_0,4.5.2024,Spieltag 32 von 34,Köln,Freiburg,0,0
+5.5.2024_Union Berlin_Bochum_3_4,5.5.2024,Spieltag 32 von 34,Union Berlin,Bochum,3,4
+5.5.2024_Eintracht Frankfurt_Leverkusen_1_5,5.5.2024,Spieltag 32 von 34,Eintracht Frankfurt,Leverkusen,1,5
+5.5.2024_Heidenheim_Mainz_1_1,5.5.2024,Spieltag 32 von 34,Heidenheim,Mainz,1,1
+10.5.2024_Augsburg_VfB Stuttgart_0_1,10.5.2024,Spieltag 33 von 34,Augsburg,VfB Stuttgart,0,1
+11.5.2024_Mönchengladbach_Eintracht Frankfurt_1_1,11.5.2024,Spieltag 33 von 34,Mönchengladbach,Eintracht Frankfurt,1,1
+11.5.2024_Köln_Union Berlin_3_2,11.5.2024,Spieltag 33 von 34,Köln,Union Berlin,3,2
+11.5.2024_Freiburg_Heidenheim_1_1,11.5.2024,Spieltag 33 von 34,Freiburg,Heidenheim,1,1
+11.5.2024_RB Leipzig_Werder Bremen_1_1,11.5.2024,Spieltag 33 von 34,RB Leipzig,Werder Bremen,1,1
+11.5.2024_Mainz_Dortmund_3_0,11.5.2024,Spieltag 33 von 34,Mainz,Dortmund,3,0
+12.5.2024_Darmstadt 98_Hoffenheim_0_6,12.5.2024,Spieltag 33 von 34,Darmstadt 98,Hoffenheim,0,6
+12.5.2024_Bayern_Wolfsburg_2_0,12.5.2024,Spieltag 33 von 34,Bayern,Wolfsburg,2,0
+12.5.2024_Bochum_Leverkusen_0_5,12.5.2024,Spieltag 33 von 34,Bochum,Leverkusen,0,5
+18.5.2024_Union Berlin_Freiburg_2_1,18.5.2024,Spieltag 34 von 34,Union Berlin,Freiburg,2,1
+18.5.2024_Hoffenheim_Bayern_4_2,18.5.2024,Spieltag 34 von 34,Hoffenheim,Bayern,4,2
+18.5.2024_Wolfsburg_Mainz_1_3,18.5.2024,Spieltag 34 von 34,Wolfsburg,Mainz,1,3
+18.5.2024_Leverkusen_Augsburg_2_1,18.5.2024,Spieltag 34 von 34,Leverkusen,Augsburg,2,1
+18.5.2024_Eintracht Frankfurt_RB Leipzig_2_2,18.5.2024,Spieltag 34 von 34,Eintracht Frankfurt,RB Leipzig,2,2
+18.5.2024_Dortmund_Darmstadt 98_4_0,18.5.2024,Spieltag 34 von 34,Dortmund,Darmstadt 98,4,0
+18.5.2024_VfB Stuttgart_Mönchengladbach_4_0,18.5.2024,Spieltag 34 von 34,VfB Stuttgart,Mönchengladbach,4,0
+18.5.2024_Werder Bremen_Bochum_4_1,18.5.2024,Spieltag 34 von 34,Werder Bremen,Bochum,4,1
+18.5.2024_Heidenheim_Köln_4_1,18.5.2024,Spieltag 34 von 34,Heidenheim,Köln,4,1
