@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import re
 import traceback
+import sys
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -68,13 +69,19 @@ def get_inputs_from_user():
                         11: "europe/champions-league",
                         12: "europe/europa-league",
                         13: "europe/conference-league"}
-    odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"-"+season.replace("/", "-20")+"/results/"
+    # if we are scraping the ongoing season, we need a different url than for past seasons
+    current_year = datetime.now().year
+    current_month = datetime.now().month
+    if (season[0:4] == str(current_year)) or ((season[0:4] == str(current_year-1)) and current_month <= 5):
+        odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"/results/"
+    else:
+        odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"-"+season.replace("/", "-20")+"/results/"
     odds_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_oddsportal_odds.csv"
 
     # file path for all matches
     matches_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_matches.csv"
     
-    return league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path
+    return league, google_url, odds_url, google_file_path, matches_file_path, odds_file_path
 
 # clicks the expand button and scroll up and down to expand all matchdays
 def expand_all_matchdays(driver):
@@ -125,8 +132,8 @@ def extract_date_from_google_text(text):
     # Reconstruct the date string
     return f"{day}.{month}.{year}"
 
-# function to find the next match that is not in the mathes_df dataframe and add it
-def find_all_scrapable_matches(driver, matches_df):
+# function to find all scrapable matches that are not in the mathes_df dataframe and add them
+def find_all_scrapable_matches(driver, matches_df, league):
 
         # find and iterate over all matchdays on the page
         WebDriverWait(driver, 3.5).until(EC.presence_of_element_located((By.CLASS_NAME, "OcbAbf")))
@@ -155,7 +162,7 @@ def find_all_scrapable_matches(driver, matches_df):
                 idx = "_".join([date, team_home, team_away, goals_home, goals_away])
 
                 if not idx in matches_df.index:
-                    matches_df.loc[idx] = [date, matchday_text, team_home, team_away, goals_home, goals_away]
+                    matches_df.loc[idx] = [date, league, matchday_text, team_home, team_away, goals_home, goals_away]
         
         return matches_df
 
@@ -181,7 +188,7 @@ def let_user_fix_page_state_manually(problem_message):
         if choice == 3:
             raise KeyboardInterrupt("Aborting the webscraping due to user choice.")
 
-def init_google_stats_scraping(google_url, google_file_path, matches_file_path):
+def init_google_stats_scraping(google_url, google_file_path, matches_file_path, league):
     
     # Read existing or create csv files for the matches and match statistics to be scraped
     try:
@@ -193,7 +200,7 @@ def init_google_stats_scraping(google_url, google_file_path, matches_file_path):
             "Passing_Accuracy", "Fouls", "Yellow_Cards", "Red_Cards", "Offside", "Corners"]
         google_stats_df = pd.DataFrame(columns=[stat+"_"+team for stat in stats for team in ["Home", "Away"]])
         google_stats_df.to_csv(google_file_path)
-        matches_df = pd.DataFrame(columns=["Date", "Matchday", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"])
+        matches_df = pd.DataFrame(columns=["Date", "League", "Matchday", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"])
         matches_df.to_csv(matches_file_path)
 
     # Initialize driver and accept Cookies
@@ -216,7 +223,7 @@ def init_google_stats_scraping(google_url, google_file_path, matches_file_path):
     while True:
         try:
             expand_all_matchdays(driver)
-            find_all_scrapable_matches(driver, matches_df)
+            find_all_scrapable_matches(driver, matches_df, league)
             break
         except TimeoutException:
             print("An error occured. \nFull stack trace:")
@@ -246,7 +253,7 @@ def scrape_statistics(driver):
     return scraped_stats
 
 # function to scrape all matches from matches_df that are not in google_stats_df
-def scrape_all_matches(driver, matches_df, google_stats_df, league):
+def scrape_all_google_stats(driver, matches_df, google_stats_df):
     
     # iterate over all scrapable matches and search the statistics of those that are not in the google_stats_df
     progress_counter = 1
@@ -254,7 +261,7 @@ def scrape_all_matches(driver, matches_df, google_stats_df, league):
         print(f"Attempting to scrape match {progress_counter} of {len(matches_df)}: {row['Team_Home']} vs {row['Team_Away']} on {row['Date']}.")
         progress_counter += 1
         if not idx in google_stats_df.index:
-            match_url = ("https://www.google.com/search?q="+row["Team_Home"]+" vs. "+row["Team_Away"]+" "+row["Date"]+" "+league).replace(" ", "+")
+            match_url = ("https://www.google.com/search?q="+row["Team_Home"]+" vs. "+row["Team_Away"]+" "+row["Date"]+" "+row["League"]).replace(" ", "+")
             driver.get(match_url)
             while True:
                 try:
@@ -282,45 +289,82 @@ def wait_for_permission_and_export(df, file_path):
             except PermissionError:
                 input("Cannot access the file. Please hit Enter when you closed the file.")
 
+# initialize dataframe and driver to scrape betting odds
+def init_oddsportal_scraping(odds_url, odds_file_path):
+
+    # Read existing or create csv files for the matches and match statistics to be scraped
+    try:
+        odds_df = pd.read_csv(odds_file_path, index_col=0)
+    except FileNotFoundError:
+        print("The odds for this league and season have not been scraped yet. Creating a new dataframe.")
+        odds_cols = ["Odds_"+event+bookie for event in ["Home_", "Draw_", "Away_"] for bookie in ["Average", "Bet365", "Bet-At-Home", "Betano", "Bwin"]]
+        odds_df = pd.DataFrame(columns=["Date", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"]+odds_cols)
+        odds_df.to_csv(odds_file_path)
+
+    # Initialize driver and accept Cookies
+    driver = webdriver.Chrome()
+    driver.get(odds_url)
+    while True:
+        try:
+            cookies_button = WebDriverWait(driver, 3.5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[id='onetrust-accept-btn-handler']")))
+            cookies_button.click()
+            break
+        except TimeoutException:
+            print("An error occured. \nFull stack trace:")
+            traceback.print_exc()
+            if let_user_fix_page_state_manually("Can you fix the page state manually? I'm expecting to click oddsportal's accept cookies button next."):
+                driver.get(odds_url)
+            else:
+                break
+    
+    return driver, odds_df
+
+def scrape_all_odds(driver, odds_url, odds_df):
+
+    number_pages = len(driver.find_elements(By.CLASS_NAME, "pagination-link"))
+    subpages = [odds_url+"/#/page/"+str(i)+"/" for i in range(1,number_pages)]
+
+    for page in subpages:
+        driver.get(page)
+        import time
+        time.sleep(3)
+
+
 def main():
     
     # get user input
-    league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path = get_inputs_from_user()
+    league, google_url, odds_url, google_file_path, matches_file_path, odds_file_path = get_inputs_from_user()
 
-    #  initialize the driver and dataframes for the google match statistics and scrape all match statistics that weren't previously scraped.
+    #  initialize the driver and dataframes for the google match statistics
     try:
-        driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path)
+        driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path, league)
         wait_for_permission_and_export(matches_df, matches_file_path)
     except KeyboardInterrupt:
-        pass
-    else:           
-        try:
-            scrape_all_matches(driver, matches_df, google_stats_df, league)
-            driver.quit()
-        except KeyboardInterrupt:
-            driver.quit()
-        wait_for_permission_and_export(google_stats_df, google_file_path)
-    
-    # #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
-    # try:
-    #     driver, google_stats_df, matches_df, file_path = init_google_stats_scraping(league, season, search_url)
-    # except KeyboardInterrupt:
-    #     pass
-    # else:           
-    #     try:
-    #         scrape_all_matches(driver, matches_df, google_stats_df, league)
-    #         driver.quit()
-    #     except KeyboardInterrupt:
-    #         driver.quit()
-    #     while True:
-    #         try:
-    #             print("Exporting scraped data to csv.")
-    #             google_stats_df.to_csv(file_path)
-    #             break
-    #         except PermissionError:
-    #             input("Permission to export csv denied. Please hit Enter when you closed the file.")
+        print("Ending the Webscraping...")
+        sys.exit()
 
-    # match scraped odds with scraped matches.
+    # scrape all google match statistics           
+    try:
+        scrape_all_google_stats(driver, matches_df, google_stats_df)
+        driver.quit()
+    except KeyboardInterrupt:
+        driver.quit()
+    wait_for_permission_and_export(google_stats_df, google_file_path)
+    
+    #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
+    try:
+        driver, odds_df = init_oddsportal_scraping(odds_url, odds_file_path)
+    except KeyboardInterrupt:
+        print("Ending the Webscraping...")
+        sys.exit()
+
+    # scrape all oddsportal betting odds      
+    try:
+        scrape_all_odds(driver, odds_url, odds_df)
+        driver.quit()
+    except KeyboardInterrupt:
+        driver.quit()
+    wait_for_permission_and_export(odds_df, odds_file_path)
 
 
 if __name__ == "__main__":
