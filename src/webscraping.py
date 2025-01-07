@@ -7,10 +7,11 @@ import pandas as pd
 import numpy as np
 import re
 import traceback
-import sys
+import time
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -110,24 +111,28 @@ def expand_all_matchdays(driver):
 
 # returns the date in pandas datetime format from the google date text of football matches
 def extract_date_from_google_text(text):
-    if "Heute" in text:
-        return datetime.now().date()
-    if "Gestern" in text:
-        return datetime.now().date() - pd.Timedelta(days=1)
-    
-    d = re.search(r"\d{1,2}\.\d{1,2}\.", text)
-    day, month = d.group().split(".")[0:2]
-
-    # Find out the year, which is either given as two digits by google, ...
-    if y := re.search(r"\d{1,2}\.\d{1,2}\.\d{2}", text):
-        year = "20" + y.group().split('.')[2]
-    # or not explicitly written out if it is recent. In that case it is either the current year or the last year.
-    else:
-        current_year = datetime.now().year 
-        if datetime.strptime(f"{day}.{month}.{str(current_year)}", "%d.%m.%Y").date() <= datetime.now().date():
-            year = str(current_year)
+    if ("Heute" in text) or ("Gestern" in text):
+        if "Heute" in text:
+            date = datetime.now().date()
         else:
-            year = str(current_year-1)
+            date = datetime.now().date() - pd.Timedelta(days=1)
+        day = date.day
+        month = date.month
+        year = date.year
+    else:
+        d = re.search(r"\d{1,2}\.\d{1,2}\.", text)
+        day, month = d.group().split(".")[0:2]
+
+        # Find out the year, which is either given as two digits by google, ...
+        if y := re.search(r"\d{1,2}\.\d{1,2}\.\d{2}", text):
+            year = "20" + y.group().split('.')[2]
+        # or not explicitly written out if it is recent. In that case it is either the current year or the last year.
+        else:
+            current_year = datetime.now().year 
+            if datetime.strptime(f"{day}.{month}.{str(current_year)}", "%d.%m.%Y").date() <= datetime.now().date():
+                year = str(current_year)
+            else:
+                year = str(current_year-1)
 
     # Reconstruct the date string
     return f"{day}.{month}.{year}"
@@ -297,38 +302,105 @@ def init_oddsportal_scraping(odds_url, odds_file_path):
         odds_df = pd.read_csv(odds_file_path, index_col=0)
     except FileNotFoundError:
         print("The odds for this league and season have not been scraped yet. Creating a new dataframe.")
-        odds_cols = ["Odds_"+event+bookie for event in ["Home_", "Draw_", "Away_"] for bookie in ["Average", "Bet365", "Bet-At-Home", "Betano", "Bwin"]]
+        odds_cols = ["Odds_"+event+bookie for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]]
         odds_df = pd.DataFrame(columns=["Date", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"]+odds_cols)
         odds_df.to_csv(odds_file_path)
 
     # Initialize driver and accept Cookies
     driver = webdriver.Chrome()
     driver.get(odds_url)
-    while True:
-        try:
-            cookies_button = WebDriverWait(driver, 3.5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[id='onetrust-accept-btn-handler']")))
-            cookies_button.click()
-            break
-        except TimeoutException:
-            print("An error occured. \nFull stack trace:")
-            traceback.print_exc()
-            if let_user_fix_page_state_manually("Can you fix the page state manually? I'm expecting to click oddsportal's accept cookies button next."):
-                driver.get(odds_url)
-            else:
-                break
+    cookies_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[id='onetrust-accept-btn-handler']")))
+    cookies_button.click()
     
     return driver, odds_df
+
+def extract_oddsportal_date(text, last_date):
+    if ("Today" in text) or ("Yesterday" in text):
+        if "Today" in text:
+            date = datetime.now().date()
+        else:
+            date = datetime.now().date() - pd.Timedelta(days=1)
+        day = date.day
+        month = date.month
+        year = date.year
+    else:
+        d = re.search(r"\d{2}\s(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}", text)
+        if d:
+            date_str = d.group()
+            day = int(date_str[:2])
+            month = datetime.strptime(date_str[3:6], '%b').month
+            year = int(date_str[-4:])
+        else:
+            return last_date
+    return f"{day}.{month}.{year}"
+
+def extract_teams_and_goals(text):
+    infos = text.split("\n")
+    return [infos[i] for i in [-9, -5, -8, -6]]
+
+def scrape_match_odds(driver, match_link):
+    original_window = driver.current_window_handle
+    ActionChains(driver)\
+        .key_down(Keys.CONTROL)\
+        .click(match_link)\
+        .key_up(Keys.CONTROL)\
+        .perform()
+
+    
+    # Wait for new window and switch to it
+    WebDriverWait(driver, 10).until(lambda d: len(d.window_handles) > 1)
+    new_window = [window for window in driver.window_handles if window != original_window][0]
+    driver.switch_to.window(new_window)
+    bookies = ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"]
+    odds_dict = {key: None for key in [event+bookie for bookie in bookies for event in ["Home_", "Draw_", "Away_"]]}
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".flex.text-xs.h-9.border-black-borders")))
+        bookie_infos = driver.find_elements(By.CSS_SELECTOR, ".flex.text-xs.h-9.border-black-borders")
+        for info in [b.text for b in bookie_infos]:
+            for bookie in bookies:
+                if bookie in info:
+                    odds_dict["Home_"+bookie] = info.split("\n")[-4]
+                    odds_dict["Draw_"+bookie] = info.split("\n")[-3]
+                    odds_dict["Away_"+bookie] = info.split("\n")[-2]
+
+    finally:
+        # Close new tab and switch back
+        driver.close()
+        driver.switch_to.window(original_window)
+        return odds_dict
 
 def scrape_all_odds(driver, odds_url, odds_df):
 
     number_pages = len(driver.find_elements(By.CLASS_NAME, "pagination-link"))
     subpages = [odds_url+"/#/page/"+str(i)+"/" for i in range(1,number_pages)]
-
+    print(subpages)
     for page in subpages:
+        print(page)
         driver.get(page)
-        import time
-        time.sleep(3)
+        time.sleep(5)
+        driver.refresh()
+        time.sleep(5)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(5)
 
+        date = extract_oddsportal_date(driver.find_element(By.CLASS_NAME, "eventRow").text, None)
+        all_events = driver.find_elements(By.CLASS_NAME, "eventRow")
+        progress_counter = 0
+        for event_row in all_events:
+            progress_counter += 1
+            event_text = event_row.text
+            date = extract_oddsportal_date(event_text, date)
+            team_home, team_away, goals_home, goals_away = extract_teams_and_goals(event_text)
+            idx = "_".join([date, team_home, team_away, goals_home, goals_away])
+            print(f"Attempting to scrape odds for match {progress_counter} of {len(all_events)} on {page[-7:-1].replace("/", " ")} of {len(subpages)}: {team_home} vs. {team_away} on {date}")
+            if idx not in odds_df.index:
+                match_link = event_row.find_element(By.CLASS_NAME, "group")
+                odds_dict = scrape_match_odds(driver, match_link)
+                odds_df.loc[idx] = ([date, team_home, team_away, goals_home, goals_away] + [odds_dict[event+bookie]
+                                for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]])
+                print("Scraping was successful!")
+            else:
+                print("Match odds are already in the Dataframe.")
 
 def main():
     
@@ -340,31 +412,29 @@ def main():
         driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path, league)
         wait_for_permission_and_export(matches_df, matches_file_path)
     except KeyboardInterrupt:
-        print("Ending the Webscraping...")
-        sys.exit()
-
-    # scrape all google match statistics           
-    try:
-        scrape_all_google_stats(driver, matches_df, google_stats_df)
-        driver.quit()
-    except KeyboardInterrupt:
-        driver.quit()
-    wait_for_permission_and_export(google_stats_df, google_file_path)
+        print("Ending the Google statistics scraping...")
+    else:
+        # scrape all google match statistics           
+        try:
+            scrape_all_google_stats(driver, matches_df, google_stats_df)
+            driver.quit()
+        except KeyboardInterrupt:
+            driver.quit()
+        wait_for_permission_and_export(google_stats_df, google_file_path)
     
     #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
     try:
         driver, odds_df = init_oddsportal_scraping(odds_url, odds_file_path)
     except KeyboardInterrupt:
         print("Ending the Webscraping...")
-        sys.exit()
-
-    # scrape all oddsportal betting odds      
-    try:
-        scrape_all_odds(driver, odds_url, odds_df)
-        driver.quit()
-    except KeyboardInterrupt:
-        driver.quit()
-    wait_for_permission_and_export(odds_df, odds_file_path)
+    else:
+        # scrape all oddsportal betting odds      
+        try:
+            scrape_all_odds(driver, odds_url, odds_df)
+            driver.quit()
+        except KeyboardInterrupt:
+            driver.quit()
+        wait_for_permission_and_export(odds_df, odds_file_path)
 
 
 if __name__ == "__main__":
