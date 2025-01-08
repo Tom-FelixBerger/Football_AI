@@ -311,6 +311,7 @@ def init_oddsportal_scraping(odds_url, odds_file_path):
     driver.get(odds_url)
     cookies_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[id='onetrust-accept-btn-handler']")))
     cookies_button.click()
+
     
     return driver, odds_df
 
@@ -336,7 +337,11 @@ def extract_oddsportal_date(text, last_date):
 
 def extract_teams_and_goals(text):
     infos = text.split("\n")
-    return [infos[i] for i in [-9, -5, -8, -6]]
+    if not "pen." in text:
+        return [infos[i] for i in [-9, -5, -8, -6]]
+    else:
+        return [infos[i-1] for i in [-9, -5, -8, -6]]
+
 
 def scrape_match_odds(driver, match_link):
     original_window = driver.current_window_handle
@@ -369,19 +374,32 @@ def scrape_match_odds(driver, match_link):
         driver.switch_to.window(original_window)
         return odds_dict
 
-def scrape_all_odds(driver, odds_url, odds_df):
+def let_odds_page_load(driver):
+    # function to check whether last element has changed
+    def _check(driver, prior_last):
+        new_last = driver.find_elements(By.CLASS_NAME, "eventRow")[-1]
+        return new_last.text != prior_last.text
 
+    driver.refresh()
+    while True:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "eventRow")))
+        last_row = driver.find_elements(By.CLASS_NAME, "eventRow")[-1]
+        actions = ActionChains(driver)
+        actions.move_to_element(last_row).perform()
+        try:
+            WebDriverWait(driver, 10).until(lambda d: _check(driver, last_row))
+        except TimeoutException:
+            break
+
+
+def scrape_all_odds(driver, odds_url, odds_df):
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "pagination-link")))
     number_pages = len(driver.find_elements(By.CLASS_NAME, "pagination-link"))
     subpages = [odds_url+"/#/page/"+str(i)+"/" for i in range(1,number_pages)]
     print(subpages)
     for page in subpages:
-        print(page)
         driver.get(page)
-        time.sleep(5)
-        driver.refresh()
-        time.sleep(5)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(5)
+        let_odds_page_load(driver)
 
         date = extract_oddsportal_date(driver.find_element(By.CLASS_NAME, "eventRow").text, None)
         all_events = driver.find_elements(By.CLASS_NAME, "eventRow")
