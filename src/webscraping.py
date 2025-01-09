@@ -40,17 +40,21 @@ def get_inputs_from_user():
             print("The input must be between 1 and 13. Please try again.")
     
     # season input
+    scrapable_seasons = {1: "2021/22", 2: "2022/23", 3: "2023/24", 4: "2024/25", 5: "Upcoming Matches"}
     while True:
-        season = input("Please enter the season of the matches you want to scrape in the following format: YYYY/YY, \nfor example: \"2024/25\".\n")
-        if re.match(r"^\d{4}/\d{2}$", season):
-            start_year, end_year = map(int, season.split("/"))
-            current_year = datetime.now().year
-            if start_year <= current_year and end_year == (start_year % 100) + 1:
-                break
-            else:
-                print("Invalid season. The season should not be in the future and should be in the format YYYY/YY.")
+        season_input = input("Please enter the season of the matches you want to scrape by providing the respective number:\n" +
+                                     "\n".join([f"{key}: {value}" for key, value in scrapable_seasons.items()]) + "\n")
+        
+        if not season_input.isdigit():
+            print("Input must be an int. Please try again.")
+            continue
+        season_input = int(season_input)
+
+        if 1 <= season_input <= 5:
+            season = scrapable_seasons[season_input]
+            break
         else:
-            print("Invalid input. Please enter the season in the format YYYY/YY.")
+            print("The input must be between 1 and 5. Please try again.")
 
     # google search query and file path
     google_url = "https://www.google.com/search?q="+league.replace(" ", "+")+"+Spiele+"+season.replace("/", "+")
@@ -75,6 +79,8 @@ def get_inputs_from_user():
     current_month = datetime.now().month
     if (season[0:4] == str(current_year)) or ((season[0:4] == str(current_year-1)) and current_month <= 5):
         odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"/results/"
+    elif season == "Upcoming Matches":
+        odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]
     else:
         odds_url = "https://www.oddsportal.com/football/"+oddsportal_pages[league_input]+"-"+season.replace("/", "-20")+"/results/"
     odds_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_oddsportal_odds.csv"
@@ -82,7 +88,7 @@ def get_inputs_from_user():
     # file path for all matches
     matches_file_path = "../data/"+league.replace(" ", "_").replace(".","")+"_"+season.replace("/", "_")+"_matches.csv"
     
-    return league, google_url, odds_url, google_file_path, matches_file_path, odds_file_path
+    return league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path
 
 # clicks the expand button and scroll up and down to expand all matchdays
 def expand_all_matchdays(driver):
@@ -295,15 +301,19 @@ def wait_for_permission_and_export(df, file_path):
                 input("Cannot access the file. Please hit Enter when you closed the file.")
 
 # initialize dataframe and driver to scrape betting odds
-def init_oddsportal_scraping(odds_url, odds_file_path):
-
-    # Read existing or create csv files for the matches and match statistics to be scraped
-    try:
-        odds_df = pd.read_csv(odds_file_path, index_col=0)
-    except FileNotFoundError:
-        print("The odds for this league and season have not been scraped yet. Creating a new dataframe.")
+def init_oddsportal_scraping(odds_url, odds_file_path, season):
+    if season != "Upcoming Matches":
+        # Read existing or create csv files for the matches and match statistics to be scraped
+        try:
+            odds_df = pd.read_csv(odds_file_path, index_col=0)
+        except FileNotFoundError:
+            print("The odds for this league and season have not been scraped yet. Creating a new dataframe.")
+            odds_cols = ["Odds_"+event+bookie for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]]
+            odds_df = pd.DataFrame(columns=["Date", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"]+odds_cols+["Upcoming"])
+            odds_df.to_csv(odds_file_path)
+    else:
         odds_cols = ["Odds_"+event+bookie for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]]
-        odds_df = pd.DataFrame(columns=["Date", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"]+odds_cols)
+        odds_df = pd.DataFrame(columns=["Date", "Team_Home", "Team_Away", "Goals_Home", "Goals_Away"]+odds_cols+["Upcoming"])
         odds_df.to_csv(odds_file_path)
 
     # Initialize driver and accept Cookies
@@ -316,11 +326,13 @@ def init_oddsportal_scraping(odds_url, odds_file_path):
     return driver, odds_df
 
 def extract_oddsportal_date(text, last_date):
-    if ("Today" in text) or ("Yesterday" in text):
+    if any([day in text for day in ["Today", "Yesterday", "Tomorrow"]]):
         if "Today" in text:
             date = datetime.now().date()
-        else:
+        elif "Yesterday" in text:
             date = datetime.now().date() - pd.Timedelta(days=1)
+        elif "Tomorrow" in text:
+            date = datetime.now().date() + pd.Timedelta(days=1)
         day = date.day
         month = date.month
         year = date.year
@@ -335,12 +347,15 @@ def extract_oddsportal_date(text, last_date):
             return last_date
     return f"{day}.{month}.{year}"
 
-def extract_teams_and_goals(text):
+def extract_teams_and_goals(text, season):
     infos = text.split("\n")
-    if not "pen." in text:
-        return [infos[i] for i in [-9, -5, -8, -6]]
+    if season != "Upcoming Matches":
+        if not "pen." in text:
+            return [infos[i] for i in [-9, -5, -8, -6]]
+        else:
+            return [infos[i-1] for i in [-9, -5, -8, -6]]
     else:
-        return [infos[i-1] for i in [-9, -5, -8, -6]]
+        return [infos[-7], infos[-5], None, None]
 
 
 def scrape_match_odds(driver, match_link):
@@ -392,11 +407,16 @@ def let_odds_page_load(driver):
             break
 
 
-def scrape_all_odds(driver, odds_url, odds_df):
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "pagination-link")))
-    number_pages = len(driver.find_elements(By.CLASS_NAME, "pagination-link"))
-    subpages = [odds_url+"/#/page/"+str(i)+"/" for i in range(1,number_pages)]
-    print(subpages)
+def scrape_all_odds(driver, odds_url, odds_df, season):
+    if season != "Upcoming Matches":
+        upcoming = False
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "pagination-link")))
+        number_pages = len(driver.find_elements(By.CLASS_NAME, "pagination-link"))
+        subpages = [odds_url+"/#/page/"+str(i)+"/" for i in range(1,number_pages)]
+    else:
+        upcoming = True
+        subpages = [odds_url]
+
     for page in subpages:
         driver.get(page)
         let_odds_page_load(driver)
@@ -408,14 +428,15 @@ def scrape_all_odds(driver, odds_url, odds_df):
             progress_counter += 1
             event_text = event_row.text
             date = extract_oddsportal_date(event_text, date)
-            team_home, team_away, goals_home, goals_away = extract_teams_and_goals(event_text)
-            idx = "_".join([date, team_home, team_away, goals_home, goals_away])
+            team_home, team_away, goals_home, goals_away = extract_teams_and_goals(event_text, season)
+            idx = "_".join([date, team_home, team_away, str(goals_home), str(goals_away)])
             print(f"Attempting to scrape odds for match {progress_counter} of {len(all_events)} on {page[-7:-1].replace("/", " ")} of {len(subpages)}: {team_home} vs. {team_away} on {date}")
             if idx not in odds_df.index:
                 match_link = event_row.find_element(By.CLASS_NAME, "group")
                 odds_dict = scrape_match_odds(driver, match_link)
                 odds_df.loc[idx] = ([date, team_home, team_away, goals_home, goals_away] + [odds_dict[event+bookie]
-                                for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]])
+                                for bookie in ["Average", "Bet365", "bet-at-home", "Betano", "Bwin"] for event in ["Home_", "Draw_", "Away_"]]
+                                + [upcoming])
                 print("Scraping was successful!")
             else:
                 print("Match odds are already in the Dataframe.")
@@ -423,37 +444,46 @@ def scrape_all_odds(driver, odds_url, odds_df):
 def main():
     
     # get user input
-    league, google_url, odds_url, google_file_path, matches_file_path, odds_file_path = get_inputs_from_user()
+    league, season, google_url, odds_url, google_file_path, matches_file_path, odds_file_path = get_inputs_from_user()
 
-    #  initialize the driver and dataframes for the google match statistics
-    try:
-        driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path, league)
-        wait_for_permission_and_export(matches_df, matches_file_path)
-    except KeyboardInterrupt:
-        print("Ending the Google statistics scraping...")
-    else:
-        # scrape all google match statistics           
+    if season != "Upcoming Matches":
+        #  initialize the driver and dataframes for the google match statistics
         try:
-            scrape_all_google_stats(driver, matches_df, google_stats_df)
-            driver.quit()
+            driver, google_stats_df, matches_df = init_google_stats_scraping(google_url, google_file_path, matches_file_path, league)
+            wait_for_permission_and_export(matches_df, matches_file_path)
         except KeyboardInterrupt:
-            driver.quit()
-        wait_for_permission_and_export(google_stats_df, google_file_path)
+            print("Ending the Google statistics scraping...")
+        else:
+            # scrape all google match statistics           
+            try:
+                scrape_all_google_stats(driver, matches_df, google_stats_df)
+                driver.quit()
+            except KeyboardInterrupt:
+                driver.quit()
+            wait_for_permission_and_export(google_stats_df, google_file_path)
     
     #  initialize the driver and dataframes for the oddsportal historical odds and scrape all odds that weren't previously scraped.
     try:
-        driver, odds_df = init_oddsportal_scraping(odds_url, odds_file_path)
+        driver, odds_df = init_oddsportal_scraping(odds_url, odds_file_path, season)
     except KeyboardInterrupt:
         print("Ending the Webscraping...")
     else:
         # scrape all oddsportal betting odds      
         try:
-            scrape_all_odds(driver, odds_url, odds_df)
+            scrape_all_odds(driver, odds_url, odds_df, season)
             driver.quit()
         except KeyboardInterrupt:
             driver.quit()
         wait_for_permission_and_export(odds_df, odds_file_path)
 
-
 if __name__ == "__main__":
     main()
+
+import os
+for odds_file in [f for f in os.listdir("../data/") if "odds" in f]:
+    df = pd.read_csv("../data/"+odds_file, index_col = 0)
+    if "Upcoming" in odds_file:
+        df["Upcoming"] = True
+    else:
+        df["Upcoming"] = False
+    df.to_csv(odds_file)
